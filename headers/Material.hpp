@@ -53,33 +53,8 @@ public:
 	virtual ~Lambertian(){}
 
 	virtual bool scatter(const Ray& r_in __attribute__((unused)), const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const {
-		Vec3 target = random_in_unit_sphere();
-		double dot = Vec3::dot(target, rec.normal);
-		if (dot < 0) target += rec.normal*dot*2;
-		scattered = Ray(rec.p, target);
-		attenuation = abs(dot)*albedo;
-		return true;
-	}
-};
-
-class Emissive: public Material{
-public:
-
-	Vec3 albedo;
-
-	Emissive(){
-		this->albedo = Vec3(random()*random(), random()*random(), random()*random());
-	}
-	Emissive(const Vec3 &albedo){
-		this->albedo = albedo;
-	}
-	virtual ~Emissive(){}
-
-	virtual bool scatter(const Ray& r_in __attribute__((unused)), const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const {
-		Vec3 target = random_in_unit_sphere();
-		double dot = Vec3::dot(target, rec.normal);
-		if (dot < 0) target += rec.normal*dot*2;
-		scattered = Ray(rec.p, target);
+		Vec3 target = rec.p + rec.normal + random_in_unit_sphere();
+		scattered = Ray(rec.p, target-rec.p);
 		attenuation = albedo;
 		return true;
 	}

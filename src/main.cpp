@@ -86,7 +86,7 @@ int main(int argc, char **argv){
 	Vec3 vUp = Vec3(0, 1, 0);
 	double fov = 45;
 	double dist_to_focus = (lookfrom-lookat).length()+0.1;
-	double aperture = 0.0;
+	double aperture = 0.1;
 	Camera cam(lookfrom, lookat, vUp, fov, double(config.width)/double(config.height), aperture, dist_to_focus);
 	
 	const int buffer_length = config.width*config.height;
