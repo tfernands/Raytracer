@@ -1,0 +1,1201 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bo",
+				"bounding_box"
+			],
+			[
+				"box",
+				"box_right"
+			],
+			[
+				"hi",
+				"Hitable"
+			],
+			[
+				"Hi",
+				"Hitable"
+			],
+			[
+				"h",
+				"hit_right"
+			],
+			[
+				"hit",
+				"hit_left"
+			],
+			[
+				"rec",
+				"right_rec"
+			],
+			[
+				"temp",
+				"temp_box"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"di",
+				"direction"
+			],
+			[
+				"scatter",
+				"scattered"
+			],
+			[
+				"t",
+				"ctype.h\tstandard header"
+			],
+			[
+				"ca",
+				"cmath\tstandard header"
+			],
+			[
+				"input",
+				"input_index"
+			],
+			[
+				"out",
+				"output_path"
+			],
+			[
+				"k",
+				"kargs"
+			],
+			[
+				"get",
+				"getcwd"
+			],
+			[
+				"print",
+				"print_arr"
+			],
+			[
+				"co",
+				"conversa"
+			],
+			[
+				"str",
+				"strdia"
+			],
+			[
+				"log",
+				"log_mean3"
+			],
+			[
+				"pr",
+				"priority"
+			],
+			[
+				"a",
+				"abstract"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"mag",
+				"magSq"
+			],
+			[
+				"li",
+				"list_size"
+			],
+			[
+				"te",
+				"temp_box"
+			],
+			[
+				"ci",
+				"config"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"con",
+				"config"
+			],
+			[
+				"red",
+				"renderer"
+			],
+			[
+				"s",
+				"start"
+			],
+			[
+				"rende",
+				"Renderer"
+			],
+			[
+				"th",
+				"threads"
+			],
+			[
+				"H",
+				"HitableList"
+			],
+			[
+				"v",
+				"virtual"
+			],
+			[
+				"sc",
+				"scene"
+			],
+			[
+				"bu",
+				"buffer_length"
+			],
+			[
+				"thre",
+				"threads"
+			],
+			[
+				"join",
+				"joinable"
+			],
+			[
+				"ke",
+				"key"
+			],
+			[
+				"cout",
+				"count"
+			],
+			[
+				"tre",
+				"thread"
+			],
+			[
+				"data",
+				"data_size"
+			],
+			[
+				"dat",
+				"Data"
+			],
+			[
+				"threa",
+				"threads"
+			],
+			[
+				"thr",
+				"thread_count"
+			],
+			[
+				"st",
+				"start"
+			],
+			[
+				"Thera",
+				"thread"
+			],
+			[
+				"c",
+				"config"
+			],
+			[
+				"pix",
+				"pixel_id"
+			],
+			[
+				"res",
+				"restPos"
+			],
+			[
+				"leg",
+				"leg_number"
+			],
+			[
+				"u",
+				"upper_bound"
+			],
+			[
+				"p",
+				"parse_status"
+			],
+			[
+				"S",
+				"SYNTAX_ERROR"
+			],
+			[
+				"fil",
+				"filter"
+			],
+			[
+				"ep",
+				"epoch"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"Cell",
+				"CellGroup"
+			],
+			[
+				"setV",
+				"setValues"
+			],
+			[
+				"cl",
+				"closest"
+			],
+			[
+				"ima",
+				"image_files"
+			],
+			[
+				"flo",
+				"float"
+			],
+			[
+				"model",
+				"model_data"
+			],
+			[
+				"keras",
+				"keras-yolo3"
+			],
+			[
+				"ti",
+				"tight_layout"
+			],
+			[
+				"save",
+				"savefig"
+			],
+			[
+				"f",
+				"f_path"
+			],
+			[
+				"path",
+				"path_dir"
+			],
+			[
+				"pi",
+				"point"
+			],
+			[
+				"img",
+				"img_h"
+			],
+			[
+				"bbox",
+				"bboxes"
+			],
+			[
+				"m",
+				"minimum"
+			],
+			[
+				"train",
+				"train_files"
+			],
+			[
+				"WIT",
+				"width"
+			],
+			[
+				"ar",
+				"argv"
+			],
+			[
+				"ran",
+				"rand_gen"
+			],
+			[
+				"im",
+				"img_buffer"
+			],
+			[
+				"un",
+				"unit_vector"
+			],
+			[
+				"ra",
+				"random"
+			],
+			[
+				"uni",
+				"unit_direction"
+			],
+			[
+				"look",
+				"lookfrom"
+			],
+			[
+				"hal",
+				"half_height"
+			],
+			[
+				"half",
+				"half_height"
+			],
+			[
+				"ref",
+				"reflect_prob"
+			],
+			[
+				"refl",
+				"reflect_prob"
+			],
+			[
+				"relfe",
+				"reflect"
+			],
+			[
+				"mat",
+				"material"
+			],
+			[
+				"Hit",
+				"Hitable"
+			],
+			[
+				"scat",
+				"scattered"
+			],
+			[
+				"refel",
+				"reflect"
+			],
+			[
+				"rand",
+				"random_in_unit_sphere"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
+				"Hita",
+				"HitableList"
+			],
+			[
+				"list",
+				"list_size"
+			],
+			[
+				"d",
+				"discriminant"
+			],
+			[
+				"unit",
+				"unit_direction"
+			],
+			[
+				"for",
+				"format"
+			],
+			[
+				"b",
+				"bboxes"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/main.cpp",
+			"settings":
+			{
+				"buffer_size": 7761,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "#include \"Sphere.hpp\"\n#include \"Plane.hpp\"\n#include \"HitableList.hpp\"\n#include \"HitableList.hpp\"\n\nHitable* ground_and_sphere(){\n\tint i = 0; \n\tHitable** list = new Hitable*[2];\n\tlist[i++] = new InfinitPlane(Vec3(0,0,0), Vec3(0,1,0), new Lambertian(Vec3(1,1,1)));\n\tlist[i++] = new Sphere(Vec3(-4,1,0),1, new Metal(Vec3(0.7,0.6,0.5),0));\n\treturn new HitableList(list, i);\n}\n\nHitable* random_scene(){\n\tint n = 50;\n\tint i = 0; \n\tHitable** list = new Hitable*[n+1];\n\tlist[i++] = new InfinitPlane(Vec3(0,0,0), Vec3(0,1,0), new Lambertian(Vec3(0.7,0.7,0.7)));\n\tlist[i++] = new Sphere(Vec3(0,1,0),1,new Dielectric(1.3));\n\tlist[i++] = new Sphere(Vec3(4,1,0),1,new Lambertian(Vec3(1,.8,.6)));\n\tlist[i++] = new Sphere(Vec3(-4,1,0),1, new Metal(Vec3(0.7,0.6,0.5),0));\n\twhile(true){\n\t\tdouble choose_mat = random();\n\t\tVec3 center(30*(random()-0.5), 0.2, 30*(random()-0.5));\n\t\tif ((center-Vec3(4,0.2,0)).length() > 0.9){\n\t\t\tif (choose_mat < 0.4){\n\t\t\t\tlist[i++] = new Sphere(center, center.y(), new Lambertian());\n\t\t\t}\n\t\t\telse if (choose_mat < 0.75){\n\t\t\t\tlist[i++] = new Sphere(center, center.y(),\n\t\t\t\t\tnew Metal(Vec3(0.5*(1+random()), 0.5*(1+random()), 0.5*(1+random())),0.5*random()));\n\t\t\t}\n\t\t\telse{\n\t\t\t\tlist[i++] = new Sphere(center, center.y(), new Dielectric(1.5));\n\t\t\t}\n\t\t\tif (i == n){\n\t\t\t\treturn new HitableList(list, i);\n\t\t\t}\n\t\t}\n\t}\n\treturn new HitableList(list, i);\n}",
+			"file": "headers/scenes.hpp",
+			"file_size": 1372,
+			"file_write_time": 132267805268792503,
+			"settings":
+			{
+				"buffer_size": 1359,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "headers/Plane.hpp",
+			"settings":
+			{
+				"buffer_size": 784,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "headers/utils.hpp",
+			"settings":
+			{
+				"buffer_size": 4442,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "headers/AABB.hpp",
+			"settings":
+			{
+				"buffer_size": 1178,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "headers/Sphere.hpp",
+			"settings":
+			{
+				"buffer_size": 1081,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "headers/HitableList.hpp",
+			"settings":
+			{
+				"buffer_size": 1058,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "headers/BVHNode.hpp",
+			"settings":
+			{
+				"buffer_size": 2154,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "#ifndef BVHNODEHPP"
+			}
+		}
+	],
+	"build_system": "Packages/C++/C++ Single File.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 164.0,
+		"history":
+		[
+			"s"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Projetos/Raytracer",
+		"/D/Projetos/Raytracer/headers"
+	],
+	"file_history":
+	[
+		"/D/Projetos/IC/vmais/TFLite/C++/hardware.txt",
+		"/D/Projetos/Raytracer/headers/utils.hpp",
+		"/D/Projetos/Raytracer/headers/Hitable.hpp",
+		"/D/Projetos/Raytracer/headers/Ray.hpp",
+		"/D/Projetos/Raytracer/docs/raytracing.github.io-master/COPYING.txt",
+		"/D/Projetos/Raytracer/headers/Material.hpp",
+		"/D/Projetos/Raytracer/headers/Scene.hpp",
+		"/C/Users/thale/Desktop/analise/teste/teste.c",
+		"/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/bitmap_helpers_impl.h",
+		"/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/bitmap_helpers.h",
+		"/D/Projetos/COVID-19/data/covid_brasil_20200411.csv",
+		"/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/yawnnet.cc",
+		"/D/Projetos/COVID-19/data/brasil20200410.csv",
+		"/D/Projetos/COVID-19/data/brasil20200411.csv",
+		"/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/bitmap_helpers.cc",
+		"/D/Projetos/COVID-19/data/estados_regioes.csv",
+		"/D/Projetos/COVID-19/brasil20200410.csv",
+		"/D/Projetos/COVID-19/estados_regioes.txt",
+		"/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/yawnnet_various.cc",
+		"/W/keras2tflite/tflite_predict.py",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/label_image.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/bitmap_helpers_impl.h",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/yawnnet.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/bitmap_helpers.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/bitmap_helpers.h",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/bitmap_helpers.h",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/label_image.h",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/bitmap_helpers_impl.h",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/label_image_test.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/bitmap_helpers.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/examples/label_image/main.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet_run/yawnnet.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/testes/larger_than_a_byte_sum.cpp",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/my_sample/my_sample.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/minimal/minimal.cc",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/get_top_n_impl.h",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/get_top_n.h",
+		"/D/Projetos/Raytracer/Makefile",
+		"/D/Projetos/IC/BusStop/TFLite/C++/testes/include_byteswap.cpp",
+		"/C/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/byteswap.h",
+		"/D/Projetos/IC/BusStop/TFLite/C++/downloads/byteswap.h",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/tools/make/build_lib.sh",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/BUILD",
+		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/convert_lite.py",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/tools/make/download_dependencies.sh",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/my_sample/MakeFile",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/my_sample/my_sample.cpp",
+		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/configure.py",
+		"/W/keras2tflite/keras2tflite.py",
+		"/D/Projetos/IC/BusStop/TFLite/C++/hardware.txt",
+		"/D/Download/Kerbal.Space.Program.Theres.No.Place.Like.Home.Update.v1.9.1-PLAZA/README.txt",
+		"/Y/jupyter_notebook/jupyter_notebook.sh",
+		"//qnap.sense.dcc.ufmg.br/trixel/torres_trixel/Resultados/YOLOv3/util.py",
+		"/Y/trixel_yolov3/YOLOv3/util.py",
+		"/Y/trixel_yolov3/yolo_code_isoladores.py",
+		"/Y/vmais/conversor/keras2tflite.py",
+		"//qnap.sense.dcc.ufmg.br/trixel/torres_trixel/Resultados/YOLOv3/Detecção_das_Isoladores_usando_YOLOv3.ipynb",
+		"/Y/trixel_yolov3/train_torre.sh",
+		"/Y/trixel_yolov3/environment.yml",
+		"/Y/jupyter_notebook/environment.yml",
+		"/Y/jupyter_notebook/Untitled.ipynb",
+		"/Y/vmais/conversor/keras2tflite.sh",
+		"/Y/vmais/conversor/environment.yml",
+		"/Y/vmais/conversor/conv.sh",
+		"/Y/trixel_yolov3/jupyter_notebook.sh",
+		"/Y/trixel_yolov3/train_isolador.sh",
+		"/D/Projetos/ChicaBot/src/ZapBot.py",
+		"/D/Projetos/ChicaBot/src/enviar_tarefas.py",
+		"/D/Projetos/ChicaBot/teste/enviar_tarefas.py",
+		"/C/Users/thale/AppData/Local/Skyrim/plugins.txt",
+		"/C/Users/thale/AppData/Local/Skyrim/DLCList.txt",
+		"/D/Games/Skyrim/readme.txt",
+		"/D/Games/Skyrim/language.txt",
+		"/D/Games/Skyrim/ControlMap_Custom.txt",
+		"/C/Users/thale/Documents/My Games/Skyrim/RendererInfo.txt",
+		"/Y/trixel_yolov3/YOLOv3/environment.yml",
+		"/Y/trixel_yolov3/yolo_roc.py",
+		"/Y/trixel_yolov3/keras-yolo3/yolo.py",
+		"/Y/trixel_yolov3/util.py",
+		"/Y/trixel_yolov3/yolo_code_torre.py",
+		"/Y/.conda/environments.txt",
+		"/Y/trixel_yolov3/pyutil/visualizer.py",
+		"/Y/trixel_yolov3/image_crops.py",
+		"/Y/trixel_yolov3/trixel_dataset.py",
+		"/Y/trixel_yolov3/yolo_util.py",
+		"/C/Users/thale/Downloads/RetinaExemplo/Detecção_das_Torres_usando_RetinaNet.ipynb",
+		"/Y/trixel_yolov3/train_torre (2).sh",
+		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/lenet_mouth.py",
+		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/teste_samples/redim.py",
+		"/C/Users/thale/Downloads/RetinaExemplo/DeteccaoTorres_RetinaNet_TESTE.py",
+		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/como_usar.py",
+		"/D/Projetos/ChicaBot/log/log.txt",
+		"/C/Users/thale/Documents/UFMG/ALC/EP1 Python e Numpy.ipynb",
+		"/D/Games/Skyrim/Data/Interface/Translate_ENGLISH.txt",
+		"/W/Datasets/Maxtrack/Videos - 2020-03-18/dataset/users.json",
+		"/C/Users/thale/.jupyter/jupyter_notebook_config.json",
+		"/D/Projetos/ChicaBot/log.txt",
+		"/D/Projetos/ChicaBot/src/ZapBot/__init__.py",
+		"/D/Projetos/ChicaBot/src/WhatsappBot.py",
+		"/D/Projetos/ChicaBot/src/parse_input.py",
+		"/D/Projetos/ChicaBot/src/log.txt",
+		"/D/Projetos/ChicaBot/teste/log.txt",
+		"/C/Users/thale/Desktop/images.py",
+		"/D/Projetos/WebTarefasCarranca/enviar_tarefas.py",
+		"/C/Users/thale/Desktop/Expr.cpp",
+		"/D/Projetos/WebTarefasCarranca/log.txt",
+		"/C/Users/thale/Desktop/Expr.py",
+		"/C/Users/thale/Desktop/trixel/logavarage.py",
+		"/D/Download/Office 2019/KMS-Digital-Online_Activation_Suite_v7_ENG/ReadMe.txt",
+		"/D/Projetos/WebTarefasCarranca/enviar.py",
+		"/D/Projetos/WebTarefasCarranca/Enviar_tarefas.py",
+		"/C/Users/thale/Desktop/trixel/logavarage.txt",
+		"/D/Projetos/PycharmProjects/PyQt5/BBox.py",
+		"/D/Projetos/IC/plot_annotation.py",
+		"/D/Projetos/IC/annotation_reid.py",
+		"/D/Projetos/sudoku/server.js",
+		"/D/Projetos/sudoku/public/scripts/sudoku.js",
+		"/D/Projetos/gpu_teste/call_from_cpu/main.cpp",
+		"/D/Projetos/gpu_teste/colors_test/Makefile",
+		"/D/Projetos/gpu_teste/colors_test/src/main.cu",
+		"/D/Projetos/gpu_teste/call_from_cpu/gpu_code.cu",
+		"/D/Projetos/IC/Motos/scraping/save_motos.py",
+		"/C/Users/thale/Desktop/script.txt",
+		"/C/Users/thale/Desktop/save_motos.py",
+		"/C/Users/thale/Desktop/save_motos.txt",
+		"/D/Projetos/gpu_teste/add/add.cu",
+		"/D/Projetos/c++ raytracer/src/main.cpp",
+		"/D/Projetos/gpu_teste/simple_program/colors.cpp"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			";;",
+			"\t",
+			"Localizado na Região ",
+			"label_image",
+			" +",
+			"LOG",
+			"read",
+			"progr",
+			"//pro",
+			"msg",
+			"progress",
+			"expected_conditions",
+			"pesquisa",
+			"expected_conditions",
+			"_search_msg_open_btn_xpath",
+			"__search_msg_close_btn_xpath",
+			"__search_msg_results_xpath",
+			"__search_msg_box_xpath",
+			"__search_msg_open_btn_xpath",
+			"__fromchatlist_xpath",
+			"__sendbutton_xpath",
+			"__messagebox_xpath",
+			"__seachbox_xpath",
+			"_search_msg_close_btn_xpath",
+			"__search_msg_close_btn_xpath",
+			"__search_msg_results_xpath",
+			"__search_msg_box_xpath",
+			"__search_msg_open_btn_xpath",
+			"__fromchatlist_xpath",
+			"__sendbutton_xpath",
+			"__messagebox_xpath",
+			"__seachbox_xpath",
+			"__search_msg_box_xpath)))",
+			"__search_msg_box_xpath",
+			"__search_msg_open_btn_xpath",
+			"__fromchatlist_xpath",
+			"__sendbutton_xpath",
+			"__messagebox_xpath",
+			"__seachbox_xpath",
+			"__search_msg_close_btn_xpath",
+			"__search_msg_results_xpath",
+			"__search_msg_box_xpath",
+			"__search_msg_open_btn_xpath",
+			"__fromchatlist_xpath",
+			"__sendbutton_xpath",
+			"__messagebox_xpath",
+			"__seachbox_xpath",
+			"_get_searchbox",
+			"__get_sendbutton",
+			"__get_searchbox",
+			"__get_messagebox",
+			"__sort_result_list",
+			"__get_search_msg_box",
+			"__get_searchbox",
+			"_get_searchbox",
+			"_get_messagebox",
+			"_get_sendbutton",
+			"fromchatlist_xpath",
+			"messagebox_xpath",
+			"seachbox_xpath",
+			"_sort_result_list",
+			"_get_search_msg_box",
+			"search_msg_close_btn_xpath",
+			"search_msg_results_xpath",
+			"search_msg_box_xpath",
+			"try",
+			":\n",
+			"search_msg_open_btn_xpath",
+			"search_msg_results_xpath",
+			"__search_msg_box_xpath",
+			"search_msg_box_xpath",
+			"try",
+			"search_msg_open_btn_xpath",
+			"chat_timestr_xpath",
+			"fromchatlist_xpath",
+			"sendbutton_xpath",
+			"messagebox_xpath",
+			"seachbox_xpath",
+			"hsv_tuples",
+			"colorsys",
+			"ImageDraw",
+			"self.model_image_size",
+			"model_image_size",
+			"INPUT_SIZE",
+			"TARGET_SIZE",
+			"ORIGINAL_SIZE",
+			"glob",
+			"cv2",
+			"PIL",
+			"shutil",
+			"util.",
+			"util",
+			"ZapBot.",
+			"ZapBot",
+			"enviar_",
+			"chromedriver",
+			"log_file",
+			"x",
+			"z",
+			"y",
+			"vector",
+			"helper_cuda",
+			"N",
+			"direction",
+			"origin",
+			"zoom_move_vel",
+			"vel",
+			"move_vel",
+			"event.key.code == ",
+			";\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			";",
+			"__messagebox_xpath",
+			"__seachbox_xpath",
+			"self.shape",
+			"shape",
+			"",
+			"DRIVER_PATH",
+			"LOG_PATH",
+			"x0",
+			"x2",
+			"x1",
+			"",
+			"n",
+			"direction_vec",
+			"origin_vec",
+			"zoom_vel",
+			"move_vel",
+			"keys["
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "D:\\Projetos\\Raytracer"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								319,
+								319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 596.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "headers/scenes.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								96,
+								96
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "headers/Plane.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 784,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								405,
+								405
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "headers/utils.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4442,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3219.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "headers/AABB.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1178,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1170,
+								1170
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "headers/Sphere.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1081,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								325,
+								325
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 82.4,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "headers/HitableList.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1058,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								278,
+								307
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 63.2,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "headers/BVHNode.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2154,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1465,
+								1465
+							]
+						],
+						"settings":
+						{
+							"auto_name": "#ifndef BVHNODEHPP",
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 90.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 126.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.stino_build_panel":
+	{
+		"height": 265.0
+	},
+	"output.stino_panel":
+	{
+		"height": 132.0
+	},
+	"pinned_build_system": "Packages/Makefile/Make.sublime-build",
+	"project": "",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"gan",
+				"D:\\Google Drive\\Colab Notebooks\\Untitled2.ipynb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 232.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
