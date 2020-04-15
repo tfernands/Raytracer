@@ -19,7 +19,7 @@
 
 using namespace std;
 
-int max_depth = 8;
+int max_depth = 12;
 
 atomic_bool kill_render;
 
@@ -73,11 +73,11 @@ int main(int argc, char **argv){
 
 	Render_config config;
 	config.width = 800;
-	config.height = 500;
+	config.height = 450;
 	config.threads = thread::hardware_concurrency();
 	if (input_handler(config, argc, argv) > 0) return 1;
 
-	Hitable* world = random_scene();	
+	Hitable* world = random_scene(1000);	
 
 	Vec3 lookfrom = Vec3(-10.7, 4,-10.4);
 	Vec3 lookat = Vec3(1,0.6,-0.5);

@@ -66,6 +66,35 @@ public:
 		box = AABB::surrounding_box(box_left, box_right);
 	}
 
+	BVHNode(Hitable **l, int n, int axis){
+		if (axis == 0){
+			qsort(l, n, sizeof(Hitable*), box_x_compare);
+			axis = 2;
+		}
+		else if (axis == 1){
+			qsort(l, n, sizeof(Hitable*), box_y_compare);
+		}
+		else{
+			qsort(l, n, sizeof(Hitable*), box_z_compare);
+			axis = 0;
+		}
+		if (n == 1){
+			left = right = l[0];
+		}
+		else if (n == 2){
+			left = l[0];
+			right = l[1];
+		}
+		else{
+			left = new BVHNode(l, n/2, axis);
+			right = new BVHNode(l+n/2, n-n/2, axis);
+		}
+		AABB box_left, box_right;
+		if (!left->bounding_box(box_left) || !right->bounding_box(box_right))
+			std::cerr << "No bounding box in BHVNode constructor\n";
+		box = AABB::surrounding_box(box_left, box_right);
+	}
+
 	virtual ~BVHNode(){}
 
 	virtual bool bounding_box(AABB& box) const override{
