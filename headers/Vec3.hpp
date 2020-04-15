@@ -8,42 +8,42 @@
 class Vec3{
 public:
 
-	double e[3];
+	float e[3];
 
 	Vec3() {}
-	Vec3(double e0, double e1, double e2) {
+	Vec3(float e0, float e1, float e2) {
 		e[0] = e0;
 		e[1] = e1;
 		e[2] = e2;
 	}
 	virtual ~Vec3(){}
 
-	inline Vec3& set(double e0, double e1, double e2){
+	inline Vec3& set(float e0, float e1, float e2){
 		e[0] = e0;
 		e[1] = e1;
 		e[2] = e2;
 		return *this;
 	}
 
-	inline double operator[](int i) const { return e[i]; }
-	inline double& operator[](int i) { return e[i]; }
+	inline float operator[](int i) const { return e[i]; }
+	inline float& operator[](int i) { return e[i]; }
 
-	inline double x() const { return e[0]; }
-	inline double y() const { return e[1]; }
-	inline double z() const { return e[2]; }
-	inline double r() const { return e[0]; }
-	inline double g() const { return e[1]; }
-	inline double b() const { return e[2]; }
+	inline float x() const { return e[0]; }
+	inline float y() const { return e[1]; }
+	inline float z() const { return e[2]; }
+	inline float r() const { return e[0]; }
+	inline float g() const { return e[1]; }
+	inline float b() const { return e[2]; }
 
-	inline double length() const {
+	inline float length() const {
 		return sqrt(squared_length());
 	}
 
-	inline double squared_length() const {
+	inline float squared_length() const {
 		return e[0]*e[0] + e[1] * e[1] + e[2]*e[2];
 	}
 
-	static inline double dot(const Vec3 &v1, const Vec3 &v2){
+	static inline float dot(const Vec3 &v1, const Vec3 &v2){
 		return v1.e[0]*v2.e[0] + v1.e[1]*v2.e[1] + v1.e[2]*v2.e[2];
 	}
 
@@ -82,21 +82,21 @@ public:
 		return *this;
 	}
 
-	inline Vec3& operator*=(const double s){
+	inline Vec3& operator*=(const float s){
 		e[0] *= s;
 		e[1] *= s;
 		e[2] *= s;
 		return *this;
 	}
 
-	inline Vec3& operator/=(const double s){
+	inline Vec3& operator/=(const float s){
 		e[0] /= s;
 		e[1] /= s;
 		e[2] /= s;
 		return *this;
 	}
 
-	inline Vec3& clip(double min_value, double max_value){
+	inline Vec3& clip(float min_value, float max_value){
 		if (e[0] < min_value)
 			e[0] = min_value;
 		if (e[1] < min_value)
@@ -132,14 +132,14 @@ public:
 		return Vec3(v1.e[0] / v2.e[0], v1.e[1] / v2.e[1], v1.e[2] / v2.e[2]);
 	}
 
-	//double
-	friend inline Vec3 operator*(const double s, const Vec3 &v2){
+	//float
+	friend inline Vec3 operator*(const float s, const Vec3 &v2){
 		return Vec3(s * v2.e[0], s * v2.e[1], s * v2.e[2]);
 	}
-	friend inline Vec3 operator*(const Vec3 &v1, const double s){
+	friend inline Vec3 operator*(const Vec3 &v1, const float s){
 		return Vec3(v1.e[0] * s, v1.e[1] * s, v1.e[2] * s);
 	}
-	friend inline Vec3 operator/(const Vec3 &v1, const double s){
+	friend inline Vec3 operator/(const Vec3 &v1, const float s){
 		return Vec3(v1.e[0] / s, v1.e[1] / s, v1.e[2] / s);
 	}
 

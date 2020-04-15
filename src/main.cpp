@@ -11,26 +11,22 @@
 #include "Sphere.hpp"
 #include "Plane.hpp"
 #include "HitableList.hpp"
-#include "Scene.hpp"
+#include "BVHNode.hpp"
+#include "scenes.hpp"
 #include "float.h"
 #include "utils.hpp"
 #include "ProgressBar.hpp"
 
 using namespace std;
 
-int max_depth = 10;
+int max_depth = 8;
 
 atomic_bool kill_render;
 
 Vec3 background(const Ray& r){
 	Vec3 unit_direction = Vec3::unit_vector(r.direction());
-	double t = unit_direction.y();
+	float t = unit_direction.y();
 	Vec3 sky = (1.0-t)*Vec3(1, 0.9, 0.9)+t*Vec3(0.6, 0.7, 1);
-	//Vec3 sun(0, 0.6, 1);
-	//sun = Vec3::unit_vector(sun);
-	//if (Vec3::dot(sun, unit_direction) > 0.99){
-	//	sky += Vec3(0.6,0.7,1)*500;
-	//}
 	return sky;//*0.1;
 }
 
@@ -60,8 +56,8 @@ void render(Vec3* buffer, Hitable* world, const Camera &cam, const Render_config
 			spps[indexes[idx]]++;
 			int i = indexes[idx] / config.width;
 			int j = indexes[idx] % config.width;
-			double u = double(j+random())/double(config.width);
-			double v = double(i+random())/double(config.height);
+			float u = float(j+random())/float(config.width);
+			float v = float(i+random())/float(config.height);
 			Ray r = cam.get_ray(u, v);
 			buffer[indexes[idx]] += shoot(r, world, 0);
 			if (kill_render) return;
@@ -76,6 +72,8 @@ int main(int argc, char **argv){
 	kill_render = false;
 
 	Render_config config;
+	config.width = 800;
+	config.height = 500;
 	config.threads = thread::hardware_concurrency();
 	if (input_handler(config, argc, argv) > 0) return 1;
 
@@ -84,10 +82,10 @@ int main(int argc, char **argv){
 	Vec3 lookfrom = Vec3(-10.7, 4,-10.4);
 	Vec3 lookat = Vec3(1,0.6,-0.5);
 	Vec3 vUp = Vec3(0, 1, 0);
-	double fov = 45;
-	double dist_to_focus = (lookfrom-lookat).length()+0.1;
-	double aperture = 0.1;
-	Camera cam(lookfrom, lookat, vUp, fov, double(config.width)/double(config.height), aperture, dist_to_focus);
+	float fov = 45;
+	float dist_to_focus = (lookfrom-lookat).length()+0.1;
+	float aperture = 0.1;
+	Camera cam(lookfrom, lookat, vUp, fov, float(config.width)/float(config.height), aperture, dist_to_focus);
 	
 	const int buffer_length = config.width*config.height;
 	indexes = new int[buffer_length];
@@ -97,8 +95,9 @@ int main(int argc, char **argv){
 		indexes[i] = i;
 		spps[i] = 0;
 	}
-	for (int i = 0; i < 40; i++)
+	for (int i = 0; i < 40; i++){
 		random_shuffle(&indexes[0], &indexes[buffer_length]);
+	}
 	
 	thread* threads[config.threads];
 	for (int i = 0; i < config.threads; i++){
@@ -162,9 +161,9 @@ int main(int argc, char **argv){
 			keys[sf::Keyboard::Down] 	||
 			keys[sf::Keyboard::Left] 	||
 			keys[sf::Keyboard::Right] 	 ){
-			double rotate_vel = 1*elapsed.asSeconds();
-			double move_vel = 10*elapsed.asSeconds();
-			double zoom_vel = 1+0.1*elapsed.asSeconds();
+			float rotate_vel = 1*elapsed.asSeconds();
+			float move_vel = 10*elapsed.asSeconds();
+			float zoom_vel = 1+0.1*elapsed.asSeconds();
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
 				rotate_vel *= 10;
@@ -244,12 +243,13 @@ int main(int argc, char **argv){
 
 			kill_render = true;
 			for (int i = 0; i < config.threads; i++){
-				if (threads[i]->joinable()) threads[i]->join();
+				if (threads[i]->joinable())
+					threads[i]->join();
 				delete threads[i];
 			}
 			kill_render = false;
 
-			cam.set(lookfrom, lookat, vUp, fov, double(config.width)/double(config.height), aperture, dist_to_focus);
+			cam.set(lookfrom, lookat, vUp, fov, float(config.width)/float(config.height), aperture, dist_to_focus);
 			for (int i = 0; i < buffer_length; i++){
 				buffer[i].set(0,0,0);
 				spps[i] = 0;

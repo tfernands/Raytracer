@@ -5,38 +5,44 @@
 
 Hitable* ground_and_sphere(){
 	int i = 0; 
-	Hitable** list = new Hitable*[2];
-	list[i++] = new InfinitPlane(Vec3(0,0,0), Vec3(0,1,0), new Lambertian(Vec3(1,1,1)));
-	list[i++] = new Sphere(Vec3(-4,1,0),1, new Metal(Vec3(0.7,0.6,0.5),0));
-	return new HitableList(list, i);
+	Hitable** list_spheres = new Hitable*[2];
+	list_spheres[i++] = new InfinitPlane(Vec3(0,0,0), Vec3(0,1,0), new Lambertian(Vec3(1,1,1)));
+	list_spheres[i++] = new Sphere(Vec3(-4,1,0),1, new Metal(Vec3(0.7,0.6,0.5),0));
+	return new HitableList(list_spheres, i);
 }
 
 Hitable* random_scene(){
-	int n = 50;
+	int n = 99;
 	int i = 0; 
-	Hitable** list = new Hitable*[n+1];
-	list[i++] = new InfinitPlane(Vec3(0,0,0), Vec3(0,1,0), new Lambertian(Vec3(0.7,0.7,0.7)));
-	list[i++] = new Sphere(Vec3(0,1,0),1,new Dielectric(1.3));
-	list[i++] = new Sphere(Vec3(4,1,0),1,new Lambertian(Vec3(1,.8,.6)));
-	list[i++] = new Sphere(Vec3(-4,1,0),1, new Metal(Vec3(0.7,0.6,0.5),0));
+	Hitable** list_spheres = new Hitable*[n+1];
+	Hitable* ground_plane = new InfinitPlane(Vec3(0,0,0), Vec3(0,1,0), new Lambertian(Vec3(0.7,0.7,0.7)));
+	list_spheres[i++] = new Sphere(Vec3(0,1,0),1,new Dielectric(1.3));
+	list_spheres[i++] = new Sphere(Vec3(4,1,0),1,new Lambertian(Vec3(1,.8,.6)));
+	list_spheres[i++] = new Sphere(Vec3(-4,1,0),1, new Metal(Vec3(0.7,0.6,0.5),0));
 	while(true){
-		double choose_mat = random();
-		Vec3 center(30*(random()-0.5), 0.2, 30*(random()-0.5));
+		float choose_mat = random();
+		Vec3 center(40*(random()-0.5), 0.2, 40*(random()-0.5));
 		if ((center-Vec3(4,0.2,0)).length() > 0.9){
 			if (choose_mat < 0.4){
-				list[i++] = new Sphere(center, center.y(), new Lambertian());
+				list_spheres[i++] = new Sphere(center, center.y(), new Lambertian());
 			}
 			else if (choose_mat < 0.75){
-				list[i++] = new Sphere(center, center.y(),
+				list_spheres[i++] = new Sphere(center, center.y(),
 					new Metal(Vec3(0.5*(1+random()), 0.5*(1+random()), 0.5*(1+random())),0.5*random()));
 			}
 			else{
-				list[i++] = new Sphere(center, center.y(), new Dielectric(1.5));
+				list_spheres[i++] = new Sphere(center, center.y(), new Dielectric(1.5));
 			}
 			if (i == n){
-				return new BVHNode(list, i);
+				Hitable** final_list = new Hitable*[2];
+				final_list[0] = ground_plane;
+				final_list[1] = new BVHNode(list_spheres, i);
+				return new HitableList(final_list, 2);
 			}
 		}
 	}
-	return new BVHNode(list, i);
+	Hitable** final_list = new Hitable*[2];
+	final_list[0] = ground_plane;
+	final_list[1] = new BVHNode(list_spheres, i);
+	return new HitableList(final_list, 2);
 }

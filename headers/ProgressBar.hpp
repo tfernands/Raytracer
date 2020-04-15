@@ -17,7 +17,7 @@ private:
     const std::chrono::steady_clock::time_point start_time = std::chrono::steady_clock::now();
 
     void update() const {
-        double progress = (double) ticks / total_ticks;
+        float progress = (float) ticks / total_ticks;
         unsigned int pos = (unsigned int) (bar_width * progress);
         std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
         auto time_elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now-start_time).count();
@@ -29,7 +29,7 @@ private:
             else buffer[i] = incomplete_char;
         }
         buffer[i] = '\0';
-        sprintf(buffer, "%s] %d%% %.2f %s",buffer,int(progress * 100.0), double(time_elapsed)/1000.0,"s");
+        sprintf(buffer, "%s] %d%% %.2f %s",buffer,int(progress * 100.0), float(time_elapsed)/1000.0,"s");
     }
 
 public:

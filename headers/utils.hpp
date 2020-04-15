@@ -8,22 +8,22 @@
 using namespace std;
 
 std::default_random_engine rand_gen;
-std::uniform_real_distribution<double> drand48(0.0,1.0);
+std::uniform_real_distribution<float> drand48(0.0,1.0);
 
 void set_seed(int seed){
 	rand_gen.seed(seed);
 }
 
-double random(){
+float random(){
 	return drand48(rand_gen);
 }
 
-double max(double a, double b){
+float max(float a, float b){
 	if (a > b) return a;
 	else return b;
 }
 
-double min(double a, double b){
+float min(float a, float b){
 	if (a < b) return a;
 	else return b;
 }
@@ -47,7 +47,7 @@ Vec3 random_in_unit_disk(){
 
 Vec3 bufferToPixel(const Vec3 &pixel, const int &spp){
 	if (spp == 0) return Vec3(0,0,0);
-	Vec3 color = pixel/double(spp);
+	Vec3 color = pixel/float(spp);
 	color[0] = sqrt(color[0]);
 	color[1] = sqrt(color[1]);
 	color[2] = sqrt(color[2]);

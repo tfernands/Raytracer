@@ -73,7 +73,7 @@ public:
 		return true;
 	}
 
-	virtual bool hit(const Ray& r, double tmin, double tmax, HitRecord& rec) const override{
+	virtual bool hit(const Ray& r, float tmin, float tmax, HitRecord& rec) const override{
 		if (box.hit(r, tmin, tmax)){
 			HitRecord left_rec, right_rec;
 			bool hit_left = left->hit(r, tmin, tmax, left_rec);

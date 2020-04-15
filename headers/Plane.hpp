@@ -22,12 +22,11 @@ public:
 	virtual ~InfinitPlane(){}
 
 	virtual bool bounding_box(AABB& box __attribute__((unused))) const override{
-		box = AABB(Vec3(-100, 0, -100), Vec3(100, -1, 100));
-		return true;
+		return false;
 	}
 
-	virtual bool hit(const Ray& r, double t_min, double t_max, HitRecord& rec) const override{
-		double t = (Vec3::dot(-normal, r.origin())-Vec3::dot(-normal, point))/Vec3::dot(r.direction(), normal);
+	virtual bool hit(const Ray& r, float t_min, float t_max, HitRecord& rec) const override{
+		float t = (Vec3::dot(-normal, r.origin())-Vec3::dot(-normal, point))/Vec3::dot(r.direction(), normal);
 		if (t > t_min && t < t_max){
 			rec.t = t;
 			rec.p = r.point_at_parameter(rec.t);
