@@ -1,6 +1,7 @@
 #include "Sphere.hpp"
 #include "Plane.hpp"
 #include "HitableList.hpp"
+#include "HitableList.hpp"
 
 Hitable* ground_and_sphere(){
 	int i = 0; 
@@ -33,9 +34,9 @@ Hitable* random_scene(){
 				list[i++] = new Sphere(center, center.y(), new Dielectric(1.5));
 			}
 			if (i == n){
-				return new HitableList(list, i);
+				return new BVHNode(list, i);
 			}
 		}
 	}
-	return new HitableList(list, i);
+	return new BVHNode(list, i);
 }
