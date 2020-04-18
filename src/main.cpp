@@ -25,7 +25,7 @@ atomic_bool kill_render;
 
 Vec3 background(const Ray& r){
 	Vec3 unit_direction = Vec3::unit_vector(r.direction());
-	float t = unit_direction.y();
+	double t = unit_direction.y();
 	Vec3 sky = (1.0-t)*Vec3(1, 0.9, 0.9)+t*Vec3(0.6, 0.7, 1);
 	return sky;//*0.1;
 }
@@ -56,8 +56,8 @@ void render(Vec3* buffer, Hitable* world, const Camera &cam, const Render_config
 			spps[indexes[idx]]++;
 			int i = indexes[idx] / config.width;
 			int j = indexes[idx] % config.width;
-			float u = float(j+random())/float(config.width);
-			float v = float(i+random())/float(config.height);
+			double u = double(j+random())/double(config.width);
+			double v = double(i+random())/double(config.height);
 			Ray r = cam.get_ray(u, v);
 			buffer[indexes[idx]] += shoot(r, world, 0);
 			if (kill_render) return;
@@ -72,8 +72,8 @@ int main(int argc, char **argv){
 	kill_render = false;
 
 	Render_config config;
-	config.width = 800;
-	config.height = 450;
+	config.width = 500;
+	config.height = 280;
 	config.threads = thread::hardware_concurrency();
 	if (input_handler(config, argc, argv) > 0) return 1;
 
@@ -82,10 +82,10 @@ int main(int argc, char **argv){
 	Vec3 lookfrom = Vec3(-10.7, 4,-10.4);
 	Vec3 lookat = Vec3(1,0.6,-0.5);
 	Vec3 vUp = Vec3(0, 1, 0);
-	float fov = 45;
-	float dist_to_focus = (lookfrom-lookat).length()+0.1;
-	float aperture = 0.1;
-	Camera cam(lookfrom, lookat, vUp, fov, float(config.width)/float(config.height), aperture, dist_to_focus);
+	double fov = 45;
+	double dist_to_focus = (lookfrom-lookat).length()+0.1;
+	double aperture = 0;
+	Camera cam(lookfrom, lookat, vUp, fov, double(config.width)/double(config.height), aperture, dist_to_focus);
 	
 	const int buffer_length = config.width*config.height;
 	indexes = new int[buffer_length];
@@ -161,9 +161,9 @@ int main(int argc, char **argv){
 			keys[sf::Keyboard::Down] 	||
 			keys[sf::Keyboard::Left] 	||
 			keys[sf::Keyboard::Right] 	 ){
-			float rotate_vel = 1*elapsed.asSeconds();
-			float move_vel = 10*elapsed.asSeconds();
-			float zoom_vel = 1+0.1*elapsed.asSeconds();
+			double rotate_vel = 1*elapsed.asSeconds();
+			double move_vel = 10*elapsed.asSeconds();
+			double zoom_vel = 1+0.1*elapsed.asSeconds();
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
 				rotate_vel *= 10;
@@ -249,7 +249,7 @@ int main(int argc, char **argv){
 			}
 			kill_render = false;
 
-			cam.set(lookfrom, lookat, vUp, fov, float(config.width)/float(config.height), aperture, dist_to_focus);
+			cam.set(lookfrom, lookat, vUp, fov, double(config.width)/double(config.height), aperture, dist_to_focus);
 			for (int i = 0; i < buffer_length; i++){
 				buffer[i].set(0,0,0);
 				spps[i] = 0;
@@ -259,11 +259,15 @@ int main(int argc, char **argv){
 				int end = (buffer_length/config.threads)*(i+1);
 				threads[i] = new thread(render, buffer, world, ref(cam), ref(config), start, end);
 			}
+
+			//Wait some of the image to be rendered
 			int sum = 0;
-			while(sum <buffer_length){
+			while(sum < buffer_length*0.8){
 				sum = 0;
 				for (int i = 0; i < buffer_length; i++){
-					sum += spps[i];
+					if (spps[i] >= 1) {
+						sum += 1;
+					}
 				}
 			}
 		}

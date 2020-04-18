@@ -5,14 +5,17 @@
 #include "Material.hpp"
 
 class Sphere: public Hitable{
+private:
+	static constexpr double bbox_pad = 0.0001;
+
 public:
 	Vec3 center;
-	float radius;
+	double radius;
 	Material *material;
 
 	Sphere(){}
 
-	Sphere(Vec3 cen, float r, Material *mat){
+	Sphere(Vec3 cen, double r, Material *mat){
 		center = cen;
 		radius = r;
 		material = mat;
@@ -21,18 +24,19 @@ public:
 	virtual ~Sphere(){}
 
 	virtual bool bounding_box(AABB& box) const override{
-		box = AABB(center-Vec3(radius, radius, radius), center+Vec3(radius, radius, radius));
+		double b_size = radius + bbox_pad;
+		box = AABB(center-Vec3(b_size, b_size, b_size), center+Vec3(b_size, b_size, b_size));
 		return true;
 	}
 
-	virtual bool hit(const Ray& r, float t_min, float t_max, HitRecord& rec) const override{
+	virtual bool hit(const Ray& r, double t_min, double t_max, HitRecord& rec) const override{
 		Vec3 oc = r.origin() - center;
-		float a = Vec3::dot(r.direction(), r.direction());
-		float b = Vec3::dot(oc, r.direction());
-		float c = Vec3::dot(oc, oc) - radius*radius;
-		float delta = b*b - a*c;
+		double a = Vec3::dot(r.direction(), r.direction());
+		double b = Vec3::dot(oc, r.direction());
+		double c = Vec3::dot(oc, oc) - radius*radius;
+		double delta = b*b - a*c;
 		if (delta > 0){
-			float temp = (-b -sqrt(delta))/a;
+			double temp = (-b -sqrt(delta))/a;
 			if (temp > t_max || temp < t_min)
 				temp = (-b +sqrt(delta))/a;
 			if (temp < t_max && temp > t_min){

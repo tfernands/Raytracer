@@ -5,8 +5,8 @@
 #include "Ray.hpp"
 
 
-inline float ffmin(float a, float b) { return a < b ? a : b;}
-inline float ffmax(float a, float b) { return a > b ? a : b;}
+inline double ffmin(double a, double b) { return a < b ? a : b;}
+inline double ffmax(double a, double b) { return a > b ? a : b;}
 
 class AABB {
 private:
@@ -23,11 +23,11 @@ public:
 	Vec3 min() const {return _min;}
 	Vec3 max() const {return _max;}
 
-	inline bool hit(const Ray& r, float tmin, float tmax) const {
+	inline bool hit(const Ray& r, double tmin, double tmax) const {
 		for (int dim = 0; dim < 3; dim++){
-			float invD = 1.0f / r.direction()[dim];
-			float t0 = (_min[dim] - r.origin()[dim])*invD;
-			float t1 = (_max[dim] - r.origin()[dim])*invD;
+			double invD = 1.0f / r.direction()[dim];
+			double t0 = (_min[dim] - r.origin()[dim])*invD;
+			double t1 = (_max[dim] - r.origin()[dim])*invD;
 			if (invD < 0.0f)
 				std::swap(t0, t1);
 			tmin = t0 > tmin ? t0 : tmin;

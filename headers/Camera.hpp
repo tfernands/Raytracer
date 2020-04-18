@@ -13,13 +13,13 @@ public:
 	Vec3 vertical;
 	Vec3 origin;
 	Vec3 u, v, w;
-	float lens_radius;
+	double lens_radius;
 
-	Camera(Vec3 lookfrom, Vec3 lookat, Vec3 vup, float vfov, float aspect, float aperture, float focus_dist){
+	Camera(Vec3 lookfrom, Vec3 lookat, Vec3 vup, double vfov, double aspect, double aperture, double focus_dist){
 		lens_radius = aperture/2;
-		float theta = vfov*M_PI/180;
-		float half_height = tan(theta/2);
-		float half_width = aspect * half_height;
+		double theta = vfov*M_PI/180;
+		double half_height = tan(theta/2);
+		double half_width = aspect * half_height;
 		w = Vec3::unit_vector(lookfrom-lookat);
 		u = Vec3::unit_vector(Vec3::cross(vup, w));
 		v = Vec3::cross(w, u);
@@ -29,11 +29,11 @@ public:
 		vertical = 2*half_height*focus_dist*v;
 	}
 
-	void set(Vec3 lookfrom, Vec3 lookat, Vec3 vup, float vfov, float aspect, float aperture, float focus_dist){
+	void set(Vec3 lookfrom, Vec3 lookat, Vec3 vup, double vfov, double aspect, double aperture, double focus_dist){
 		lens_radius = aperture/2;
-		float theta = vfov*M_PI/180;
-		float half_height = tan(theta/2);
-		float half_width = aspect * half_height;
+		double theta = vfov*M_PI/180;
+		double half_height = tan(theta/2);
+		double half_width = aspect * half_height;
 		w = Vec3::unit_vector(lookfrom-lookat);
 		u = Vec3::unit_vector(Vec3::cross(vup, w));
 		v = Vec3::cross(w, u);
@@ -45,7 +45,10 @@ public:
 
 	virtual ~Camera(){}
 
-	Ray get_ray(float s, float t) const{
+	Ray get_ray(double s, double t) const{
+		if (lens_radius == 0){
+			return Ray(origin, top_left_corner+s*horizontal-t*vertical-origin);
+		}
 		Vec3 rd = lens_radius*random_in_unit_disk();
 		Vec3 offset = u*rd.x() + v*rd.y();
 		Vec3 temp_origin = origin+offset;
