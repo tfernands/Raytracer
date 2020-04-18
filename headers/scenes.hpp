@@ -4,17 +4,28 @@
 #include "HitableList.hpp"
 
 Hitable* ground_and_sphere(){
-	int i = 0; 
+	int i = 0;
 	Hitable** list_spheres = new Hitable*[2];
-	list_spheres[i++] = new InfinitPlane(Vec3(0,0,0), Vec3(0,1,0), new Lambertian(Vec3(1,1,1)));
-	list_spheres[i++] = new Sphere(Vec3(-4,1,0),1, new Metal(Vec3(0.7,0.6,0.5),0));
+	Texture* pertext = new NoiseTexture();
+	list_spheres[i++] = new Sphere(Vec3(0,-1000,0), 1000, new Lambertian(pertext));
+	list_spheres[i++] = new Sphere(Vec3(-4,1,0),1, new Lambertian(pertext));
+	return new HitableList(list_spheres, i);
+}
+
+Hitable* two_sphere(){
+	int i = 0;
+	Hitable** list_spheres = new Hitable*[2];
+	Texture* checkerTexture = new CheckerTexture(new ConstantTexture(Vec3(0.2,.3,.1)), new ConstantTexture(Vec3(0.9,.9,.9)));
+	list_spheres[i++] = new Sphere(Vec3(0,-10,0),10, new Lambertian(checkerTexture));
+	list_spheres[i++] = new Sphere(Vec3(0,10,0),10, new Lambertian(checkerTexture));
 	return new HitableList(list_spheres, i);
 }
 
 Hitable* random_scene(int n){
 	int i = 0; 
 	Hitable** list_spheres = new Hitable*[n+1];
-	Hitable* ground_plane = new InfinitPlane(Vec3(0,0,0), Vec3(0,1,0), new Lambertian(Vec3(0.6,.6,.6)));
+	Texture* checkerTexture = new CheckerTexture(new ConstantTexture(Vec3(0.2,.3,.1)), new ConstantTexture(Vec3(0.9,.9,.9)));
+	Hitable* ground_plane = new Sphere(Vec3(0,-10000,0), 10000, new Lambertian(checkerTexture));
 	list_spheres[i++] = new Sphere(Vec3(0,1,0),1,new Dielectric(1.3));
 	list_spheres[i++] = new Sphere(Vec3(4,1,0),1,new Lambertian(Vec3(0.95,.95,.95)));
 	list_spheres[i++] = new Sphere(Vec3(-4,1,0),1, new Metal(Vec3(0.7,0.6,0.5),0));

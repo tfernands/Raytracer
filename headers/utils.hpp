@@ -8,13 +8,13 @@
 using namespace std;
 
 std::default_random_engine rand_gen;
-std::uniform_real_distribution<double> drand48(0.0,1.0);
+std::uniform_real_distribution<double> drand48(0.0, 1.0);
 
 void set_seed(int seed){
 	rand_gen.seed(seed);
 }
 
-double random(){
+inline double random(){
 	return drand48(rand_gen);
 }
 

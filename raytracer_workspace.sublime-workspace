@@ -415,31 +415,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/yawnnet.cc",
-			"settings":
-			{
-				"buffer_size": 4737,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/main.cpp",
-			"settings":
-			{
-				"buffer_size": 7750,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "headers/scenes.hpp",
-			"settings":
-			{
-				"buffer_size": 1584,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "Packages/C++/C++ Single File.sublime-build",
 	"build_system_choices":
@@ -528,18 +503,21 @@
 	],
 	"file_history":
 	[
+		"/C/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.24.28314/include/crtdefs.h",
+		"/D/Projetos/Raytracer/headers/utils.hpp",
+		"/D/Projetos/Raytracer/src/main.cpp",
+		"/D/Projetos/gpu_teste/vec add/add_cpu.cpp",
+		"/D/Projetos/gpu_teste/vec add/add_gpu.cu",
+		"/D/Projetos/Raytracer/headers/scenes.hpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/yawnnet.cc",
 		"/D/Projetos/Raytracer/headers/Material.hpp",
 		"/D/Projetos/Raytracer/headers/Camera.hpp",
-		"/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/yawnnet.cc",
-		"/D/Projetos/Raytracer/headers/scenes.hpp",
-		"/D/Projetos/Raytracer/src/main.cpp",
 		"/D/Projetos/IC/vmais/TFLite/C++/hardware.txt",
 		"/D/Projetos/Raytracer/headers/Plane.hpp",
 		"/D/Projetos/Raytracer/headers/BVHNode.hpp",
 		"/D/Projetos/Raytracer/headers/ProgressBar.hpp",
 		"/D/Projetos/Raytracer/headers/Vec3.hpp",
 		"/D/Projetos/Raytracer/headers/Hitable.hpp",
-		"/D/Projetos/Raytracer/headers/utils.hpp",
 		"/D/Projetos/Raytracer/headers/AABB.hpp",
 		"/D/Projetos/Raytracer/headers/Sphere.hpp",
 		"/D/Projetos/Raytracer/headers/Ray.hpp",
@@ -652,10 +630,7 @@
 		"/C/Users/thale/Desktop/trixel/logavarage.txt",
 		"/D/Projetos/PycharmProjects/PyQt5/BBox.py",
 		"/D/Projetos/IC/plot_annotation.py",
-		"/D/Projetos/IC/annotation_reid.py",
-		"/D/Projetos/sudoku/server.js",
-		"/D/Projetos/sudoku/public/scripts/sudoku.js",
-		"/D/Projetos/gpu_teste/call_from_cpu/main.cpp"
+		"/D/Projetos/IC/annotation_reid.py"
 	],
 	"find":
 	{
@@ -830,94 +805,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/yawnnet.cc",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4737,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1380.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/main.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7750,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 3312.8,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "headers/scenes.hpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1584,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								595,
-								595
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 160.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],

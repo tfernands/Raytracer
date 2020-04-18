@@ -19,7 +19,7 @@
 
 using namespace std;
 
-int max_depth = 12;
+int max_depth = 10;
 
 atomic_bool kill_render;
 
@@ -77,7 +77,7 @@ int main(int argc, char **argv){
 	config.threads = thread::hardware_concurrency();
 	if (input_handler(config, argc, argv) > 0) return 1;
 
-	Hitable* world = random_scene(1000);	
+	Hitable* world = ground_and_sphere();//random_scene(1000);	
 
 	Vec3 lookfrom = Vec3(-10.7, 4,-10.4);
 	Vec3 lookat = Vec3(1,0.6,-0.5);
