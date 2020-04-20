@@ -113,11 +113,11 @@ public:
 	}
 
 	friend inline Vec3 operator+(const Vec3 &v1, const Vec3 &v2){
-		return Vec3(v1.e[0] + v2.e[0], v1.e[1] + v2.e[1], v1.e[2] + v2.e[2]);
+		return Vec3(v1.e[0]+v2.e[0], v1.e[1]+v2.e[1], v1.e[2]+v2.e[2]);
 	}
 
 	friend inline Vec3 operator-(const Vec3 &v1, const Vec3 &v2){
-		return Vec3(v1.e[0] - v2.e[0], v1.e[1] - v2.e[1], v1.e[2] - v2.e[2]);
+		return Vec3(v1.e[0]-v2.e[0], v1.e[1]-v2.e[1], v1.e[2]-v2.e[2]);
 	}
 
 	friend inline Vec3 operator-(const Vec3 &v){
@@ -125,22 +125,22 @@ public:
 	}
 
 	friend inline Vec3 operator*(const Vec3 &v1, const Vec3 &v2){
-		return Vec3(v1.e[0] * v2.e[0], v1.e[1] * v2.e[1], v1.e[2] * v2.e[2]);
+		return Vec3(v1.e[0]*v2.e[0], v1.e[1]*v2.e[1], v1.e[2]*v2.e[2]);
 	}
 
 	friend inline Vec3 operator/(const Vec3 &v1, const Vec3 &v2){
-		return Vec3(v1.e[0] / v2.e[0], v1.e[1] / v2.e[1], v1.e[2] / v2.e[2]);
+		return Vec3(v1.e[0]/v2.e[0], v1.e[1]/v2.e[1], v1.e[2]/v2.e[2]);
 	}
 
 	//double
 	friend inline Vec3 operator*(const double s, const Vec3 &v2){
-		return Vec3(s * v2.e[0], s * v2.e[1], s * v2.e[2]);
+		return Vec3(s*v2.e[0], s*v2.e[1], s*v2.e[2]);
 	}
 	friend inline Vec3 operator*(const Vec3 &v1, const double s){
-		return Vec3(v1.e[0] * s, v1.e[1] * s, v1.e[2] * s);
+		return Vec3(v1.e[0]*s, v1.e[1]*s, v1.e[2]*s);
 	}
 	friend inline Vec3 operator/(const Vec3 &v1, const double s){
-		return Vec3(v1.e[0] / s, v1.e[1] / s, v1.e[2] / s);
+		return Vec3(v1.e[0]/s, v1.e[1]/s, v1.e[2]/s);
 	}
 
 	friend inline std::istream& operator>>(std::istream &in, Vec3 &v){

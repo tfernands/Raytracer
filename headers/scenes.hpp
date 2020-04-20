@@ -6,9 +6,9 @@
 Hitable* ground_and_sphere(){
 	int i = 0;
 	Hitable** list_spheres = new Hitable*[2];
-	Texture* pertext = new NoiseTexture();
-	list_spheres[i++] = new Sphere(Vec3(0,-1000,0), 1000, new Lambertian(pertext));
-	list_spheres[i++] = new Sphere(Vec3(-4,1,0),1, new Lambertian(pertext));
+	Texture* constColor = new ConstantTexture(Vec3(0.7,0.7,0.7));
+	list_spheres[i++] = new Sphere(Vec3(0,-1000,0), 1000, new Lambertian(constColor));
+	list_spheres[i++] = new Sphere(Vec3(-4,1,0),1, new Lambertian(constColor));
 	return new HitableList(list_spheres, i);
 }
 
@@ -18,6 +18,15 @@ Hitable* two_sphere(){
 	Texture* checkerTexture = new CheckerTexture(new ConstantTexture(Vec3(0.2,.3,.1)), new ConstantTexture(Vec3(0.9,.9,.9)));
 	list_spheres[i++] = new Sphere(Vec3(0,-10,0),10, new Lambertian(checkerTexture));
 	list_spheres[i++] = new Sphere(Vec3(0,10,0),10, new Lambertian(checkerTexture));
+	return new HitableList(list_spheres, i);
+}
+
+Hitable* two_perlin_spheres(){
+	int i = 0;
+	Hitable** list_spheres = new Hitable*[2];
+	Texture* pertext = new NoiseTexture(5);
+	list_spheres[i++] = new Sphere(Vec3(0,-1000,0),1000, new Lambertian(pertext));
+	list_spheres[i++] = new Sphere(Vec3(0,2,0),2, new Lambertian(pertext));
 	return new HitableList(list_spheres, i);
 }
 
