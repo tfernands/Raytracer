@@ -8,6 +8,13 @@ class Sphere: public Hitable{
 private:
 	static constexpr double bbox_pad = 0.0001;
 
+	static void get_uv(const Vec3& p, double& u , double& v){
+		double phi = atan2(p.z(), p.x());
+		double theta = asin(p.y());
+		u = 1-(phi + M_PI) / (2*M_PI);
+		v = (theta + M_PI/2) / M_PI;
+	}
+
 public:
 	Vec3 center;
 	double radius;
@@ -29,7 +36,7 @@ public:
 		return true;
 	}
 
-	virtual bool hit(const Ray& r, double t_min, double t_max, HitRecord& rec) const override{
+	virtual bool hit(const Ray& r, double t_min, double t_max, HitRecord& rec) const override {
 		Vec3 oc = r.origin() - center;
 		double a = Vec3::dot(r.direction(), r.direction());
 		double b = Vec3::dot(oc, r.direction());
@@ -44,6 +51,7 @@ public:
 				rec.p = r.point_at_parameter(rec.t);
 				rec.normal = (rec.p - center)/radius;
 				rec.material = material;
+				get_uv((rec.p-center)/radius, rec.u, rec.v);
 				return true;
 			}
 		}

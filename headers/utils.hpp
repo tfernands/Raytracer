@@ -44,7 +44,6 @@ Vec3 random_in_unit_disk(){
 	return p;
 }
 
-
 Vec3 bufferToPixel(const Vec3 &pixel, const int &spp){
 	if (spp == 0) return Vec3(0,0,0);
 	Vec3 color = pixel/double(spp);
@@ -66,6 +65,17 @@ void save_as_ppm(const char *name, Vec3 *buffer, const int &nx, const int &ny, c
 		myfile << int(color.r()) <<' '<< int(color.g()) <<' '<< int(color.b()) <<endl;
 	}
 	myfile.close();	
+}
+
+template <class T>
+void printArray(T array, int n){
+	std::cout << '[';
+	for (int i = 0; i < n; i++){
+		std::cout << array[i];
+		if (i < n-1)
+			std::cout <<", ";
+	}
+	std::cout <<']';
 }
 
 typedef struct Render_config{

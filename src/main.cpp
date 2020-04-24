@@ -19,11 +19,12 @@
 
 using namespace std;
 
-int max_depth = 10;
+int max_depth = 50;
 
 atomic_bool kill_render;
 
 Vec3 background(const Ray& r){
+	return Vec3(0,0,0);
 	Vec3 unit_direction = Vec3::unit_vector(r.direction());
 	double t = unit_direction.y();
 	Vec3 sky = (1.0-t)*Vec3(1, 0.9, 0.9)+t*Vec3(0.6, 0.7, 1);
@@ -35,12 +36,12 @@ Vec3 shoot(const Ray& r, Hitable *world, int depth){
 	if (world->hit(r, 0.001, DBL_MAX, rec)){
 		Ray scattered;
 		Vec3 attenuation;
+		Vec3 emitted = rec.material->emitted(rec.u, rec.v, rec.p);
 		if (depth < max_depth && rec.material->scatter(r, rec, attenuation, scattered)){
-			if (rec.material->final_hit) return attenuation;
-			else return attenuation*shoot(scattered, world, depth+1);
+			return emitted + attenuation*shoot(scattered, world, depth+1);
 		}
 		else{
-			return Vec3(0,0,0);
+			return emitted;
 		}
 	}else{
 		return background(r);
@@ -77,16 +78,9 @@ int main(int argc, char **argv){
 	config.threads = thread::hardware_concurrency();
 	if (input_handler(config, argc, argv) > 0) return 1;
 
-	Hitable* world = two_perlin_spheres();//random_scene(1000);	
+	Hitable* world = cornell_box();//random_scene(1000);	
+	Camera cam = cornell_box_camera(double(config.width), double(config.height));
 
-	Vec3 lookfrom = Vec3(-10.7, 4,-10.4);
-	Vec3 lookat = Vec3(1,0.6,-0.5);
-	Vec3 vUp = Vec3(0, 1, 0);
-	double fov = 45;
-	double dist_to_focus = (lookfrom-lookat).length()+0.1;
-	double aperture = 0;
-	Camera cam(lookfrom, lookat, vUp, fov, double(config.width)/double(config.height), aperture, dist_to_focus);
-	
 	const int buffer_length = config.width*config.height;
 	indexes = new int[buffer_length];
 	spps = new int[buffer_length];
@@ -166,7 +160,7 @@ int main(int argc, char **argv){
 			double zoom_vel = 1+0.1*elapsed.asSeconds();
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-				rotate_vel *= 10;
+				//rotate_vel *= 10;
 				move_vel *= 10;
 				zoom_vel = 1+0.1*10*elapsed.asSeconds();
 			}
@@ -176,70 +170,49 @@ int main(int argc, char **argv){
 			}
 
 			//MOVE
-			if (keys[sf::Keyboard::W]){
+			Vec3 lookfrom = cam.origin;
+			if (keys[sf::Keyboard::W])
 				lookfrom -= cam.w * move_vel;
-				lookat = lookfrom-cam.w;
-			}
-			if (keys[sf::Keyboard::A]){
+			if (keys[sf::Keyboard::A])
 				lookfrom -= cam.u * move_vel;
-				lookat = lookfrom-cam.w;
-			}
-			if (keys[sf::Keyboard::S]){
+			if (keys[sf::Keyboard::S])
 				lookfrom += cam.w * move_vel;
-				lookat = lookfrom-cam.w;
-			}
-			if (keys[sf::Keyboard::D]){
+			if (keys[sf::Keyboard::D])
 				lookfrom += cam.u * move_vel;
-				lookat = lookfrom-cam.w;
-			}
-			if (keys[sf::Keyboard::R]){
+			if (keys[sf::Keyboard::R])
 				lookfrom += cam.v * move_vel;
-				lookat = lookfrom-cam.w;
-			}
-			if (keys[sf::Keyboard::F]){
+			if (keys[sf::Keyboard::F])
 				lookfrom -= cam.v * move_vel;
-				lookat = lookfrom-cam.w;
-			}
 
 			//ROTATE
-			if (keys[sf::Keyboard::Up]){
-				lookat = lookfrom-cam.w;
+			Vec3 lookat = lookfrom-cam.w;
+			Vec3 vUp = cam.get_vup();
+			if (keys[sf::Keyboard::Up])
 				lookat -= cam.v * rotate_vel;
-			}
-			if (keys[sf::Keyboard::Down]){
-				lookat = lookfrom-cam.w;
+			if (keys[sf::Keyboard::Down])
 				lookat += cam.v * rotate_vel;
-			}
-			if (keys[sf::Keyboard::Left]){
-				lookat = lookfrom-cam.w;
+			if (keys[sf::Keyboard::Left])
 				lookat -= cam.u * rotate_vel;
-			}
-			if (keys[sf::Keyboard::Right]){
-				lookat = lookfrom-cam.w;
+			if (keys[sf::Keyboard::Right])
 				lookat += cam.u * rotate_vel;
-			}
-			if (keys[sf::Keyboard::Q]){
+			if (keys[sf::Keyboard::Q])
 				vUp -= cam.u * rotate_vel;
-			}
-			if (keys[sf::Keyboard::E]){
+			if (keys[sf::Keyboard::E])
 				vUp += cam.u * rotate_vel;
-			}
 
 			//ZOOM
-			if (keys[sf::Keyboard::Z]){
+			double fov = cam.get_fov();
+			if (keys[sf::Keyboard::Z])
 				fov /= zoom_vel;
-			}
-			if (keys[sf::Keyboard::X]){
+			if (keys[sf::Keyboard::X])
 				fov *= zoom_vel;
-			}
 
 			//FOCUS
-			if (keys[sf::Keyboard::C]){
+			double dist_to_focus = cam.get_focus_dist();
+			if (keys[sf::Keyboard::C])
 				dist_to_focus /= zoom_vel;
-			}
-			if (keys[sf::Keyboard::V]){
+			if (keys[sf::Keyboard::V])
 				dist_to_focus *= zoom_vel;
-			}
 
 			kill_render = true;
 			for (int i = 0; i < config.threads; i++){
@@ -249,7 +222,7 @@ int main(int argc, char **argv){
 			}
 			kill_render = false;
 
-			cam.set(lookfrom, lookat, vUp, fov, double(config.width)/double(config.height), aperture, dist_to_focus);
+			cam.set(lookfrom, lookat, vUp, fov, cam.get_aspect(), cam.get_aperture(), dist_to_focus);
 			for (int i = 0; i < buffer_length; i++){
 				buffer[i].set(0,0,0);
 				spps[i] = 0;

@@ -5,6 +5,7 @@
 #include "Ray.hpp"
 #include "Hitable.hpp"
 #include "utils.hpp"
+#include <stdint.h>
 
 struct HitRecord;
 
@@ -138,7 +139,6 @@ class Perlin {
 		permute(p, 256);
 		return p;
 	}
-
 };
 
 Vec3* Perlin::ranVec = Perlin::perlin_generate();
@@ -147,7 +147,7 @@ int* Perlin::perm_y = Perlin::perlin_generate_perm();
 int* Perlin::perm_z = Perlin::perlin_generate_perm();
 
 class NoiseTexture: public Texture{
-public:
+	public:
 	double scale;
 	Perlin noise;
 	NoiseTexture(double scale): scale(scale){}
@@ -158,7 +158,7 @@ public:
 };
 
 class Marble: public Texture{
-public:
+	public:
 	double scale;
 	Perlin noise;
 	Marble(double scale): scale(scale){}
@@ -168,14 +168,46 @@ public:
 	}
 };
 
+class ImageTexture: public Texture{
+	public:
+	uint8_t* data;
+	int nx, ny;
+	ImageTexture(){
+		nx = 3;
+		ny = 1;
+		data = new uint8_t[nx*ny*3];
+		uint8_t temp[9] = {255,1,2, 3,255,5, 6,7,255};
+		for (int i = 0; i < nx*ny*3; i++)
+			data[i] = temp[i];
+		printArray(data, 9);
+		std::cout<<std::endl;
+	}
+	ImageTexture(uint8_t *pixels, int A, int B): data(pixels), nx(A), ny(B) {}
+	virtual ~ImageTexture(){}
+	virtual Vec3 value(double u, double v, const Vec3& p __attribute__((unused))) const {
+		int i = u*nx;
+		int j = (1-v)*ny-0.001;
+		if (i < 0) i = 0;
+		if (j < 0) j = 0;
+		if (i > nx-1) i = nx-1;
+		if (j > ny-1) j = ny-1;
+		double r = int(data[3*nx*j + i*3+0])/255.0;
+		double g = int(data[3*nx*j + i*3+1])/255.0;
+		double b = int(data[3*nx*j + i*3+2])/255.0;
+		return Vec3(r, g, b);
+	}
+};
+
 
 // ================== Materials =======================
 
 class Material{
 	public:
-	bool final_hit = false;
 	virtual ~Material(){}
 	virtual bool scatter(const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const = 0;
+	virtual Vec3 emitted(float u __attribute__((unused)), float v __attribute__((unused)), const Vec3& p __attribute__((unused))) const {
+		return Vec3(0, 0, 0);
+	}
 };
 
 class Lambertian: public Material{
@@ -194,7 +226,7 @@ class Lambertian: public Material{
 	virtual bool scatter(const Ray& r_in __attribute__((unused)), const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const {
 		Vec3 target = rec.p + rec.normal + random_in_unit_sphere();
 		scattered = Ray(rec.p, target-rec.p);
-		attenuation = albedo->value(0, 0, rec.p);
+		attenuation = albedo->value(rec.u, rec.v, rec.p);
 		return true;
 	}
 };
@@ -266,6 +298,19 @@ class Dielectric: public Material{
 		}
 		return true;
 	}
+};
+
+class DiffuseLight: public Material{
+	public:
+		Texture* emit;
+		DiffuseLight(Texture* a): emit(a) {}
+		virtual ~DiffuseLight() {}
+		virtual bool scatter(const Ray& r_in __attribute__((unused)), const HitRecord& rec __attribute__((unused)), Vec3& attenuation __attribute__((unused)), Ray& scattered __attribute__((unused))) const {
+			return false;
+		}
+		virtual Vec3 emitted(float u, float v, const Vec3& p) const {
+			return emit->value(u, v, p);
+		}
 };
 
 #endif
