@@ -8,7 +8,7 @@ class Material;
 
 struct HitRecord{
 	double t;				//distance traveled to hit point
-	double u, v;
+	double u, v;			//object hitcoord
 	Vec3 p;					//hit point
 	Vec3 normal;			//surface normal  
 	Material *material; 	//material

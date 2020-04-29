@@ -143,7 +143,12 @@ public:
 		return Vec3(v1.e[0]/s, v1.e[1]/s, v1.e[2]/s);
 	}
 
-	friend inline std::istream& operator>>(std::istream &in, Vec3 &v){
+
+	inline double mean() const {
+		return (e[0]+e[1]+e[2])/3;
+	}
+
+	friend std::istream& operator>>(std::istream &in, Vec3 &v){
 		in >> v.e[0] >> v.e[1] >> v.e[2];
 		return in;
 	}

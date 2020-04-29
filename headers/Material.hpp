@@ -44,8 +44,8 @@ class Texture{
 class ConstantTexture: public Texture{
 	public:
 	Vec3 color;
-	ConstantTexture() {}
 	ConstantTexture(Vec3 c): color(c) {}
+	virtual ~ConstantTexture() {}
 	virtual Vec3 value(double u __attribute__((unused)), double v __attribute__((unused)), const Vec3& p __attribute__((unused))) const override {
 		return color;
 	}
@@ -55,11 +55,11 @@ class CheckerTexture: public Texture{
 	public:
 		Texture* even;
 		Texture* odd;
-		CheckerTexture() {}
-		CheckerTexture(Texture* t0, Texture* t1): even(t0), odd(t1) {}
+		double scale;
+		CheckerTexture(Texture* t0, Texture* t1, double scale): even(t0), odd(t1), scale(scale) {}
 		virtual ~CheckerTexture() {}
 		virtual Vec3 value(double u __attribute__((unused)), double v __attribute__((unused)), const Vec3& p) const override {
-			double sines = sin(10*p.x())*sin(10*p.y())*sin(10*p.z());
+			double sines = sin(scale*p.x())*sin(scale*p.y())*sin(scale*p.z());
 			if (sines < 0)
 				return odd->value(u, v, p);
 			return even->value(u, v, p);
@@ -170,34 +170,69 @@ class Marble: public Texture{
 
 class ImageTexture: public Texture{
 	public:
-	uint8_t* data;
-	int nx, ny;
-	ImageTexture(){
-		nx = 3;
-		ny = 1;
-		data = new uint8_t[nx*ny*3];
-		uint8_t temp[9] = {255,1,2, 3,255,5, 6,7,255};
-		for (int i = 0; i < nx*ny*3; i++)
-			data[i] = temp[i];
-		printArray(data, 9);
-		std::cout<<std::endl;
-	}
-	ImageTexture(uint8_t *pixels, int A, int B): data(pixels), nx(A), ny(B) {}
-	virtual ~ImageTexture(){}
-	virtual Vec3 value(double u, double v, const Vec3& p __attribute__((unused))) const {
-		int i = u*nx;
-		int j = (1-v)*ny-0.001;
-		if (i < 0) i = 0;
-		if (j < 0) j = 0;
-		if (i > nx-1) i = nx-1;
-		if (j > ny-1) j = ny-1;
-		double r = int(data[3*nx*j + i*3+0])/255.0;
-		double g = int(data[3*nx*j + i*3+1])/255.0;
-		double b = int(data[3*nx*j + i*3+2])/255.0;
-		return Vec3(r, g, b);
-	}
+		uint8_t* data;
+		int nx, ny;
+		ImageTexture(uint8_t *pixels, int A, int B): data(pixels), nx(A), ny(B) {}
+		virtual ~ImageTexture(){}
+		virtual Vec3 value(double u, double v, const Vec3& p __attribute__((unused))) const {
+			int i = u*nx;
+			int j = (1-v)*ny-0.001;
+			if (i < 0) i = 0;
+			if (j < 0) j = 0;
+			if (i > nx-1) i = nx-1;
+			if (j > ny-1) j = ny-1;
+			double r = int(data[3*nx*j + i*3+0])/255.0;
+			double g = int(data[3*nx*j + i*3+1])/255.0;
+			double b = int(data[3*nx*j + i*3+2])/255.0;
+			return Vec3(r, g, b);
+		}
 };
 
+class InvertTexture: public Texture{
+	public:
+		Texture* texture;
+		InvertTexture(Texture* texture): texture(texture) {}
+		virtual Vec3 value(double u, double v, const Vec3& p) const {
+			return Vec3(1,1,1)-texture->value(u,v,p);
+		}
+};
+
+class MultplyTexture: public Texture{
+	public:
+		Texture *tex1, *tex2;
+		MultplyTexture(Texture* tex1, Texture* tex2): tex1(tex1), tex2(tex2) {}
+		virtual Vec3 value(double u, double v, const Vec3& p) const {
+			return tex1->value(u,v,p)*tex2->value(u,v,p);
+		}
+};
+
+class AddTexture: public Texture{
+	public:
+		Texture *tex1, *tex2;
+		AddTexture(Texture* tex1, Texture* tex2): tex1(tex1), tex2(tex2) {}
+		virtual Vec3 value(double u, double v, const Vec3& p) const {
+			return tex1->value(u,v,p)+tex2->value(u,v,p);
+		}
+};
+
+class BWTexture: public Texture{
+	public:
+		Texture *tex;
+		BWTexture(Texture* tex): tex(tex) {}
+		virtual Vec3 value(double u, double v, const Vec3& p) const {
+			double value = tex->value(u,v,p).mean();
+			return Vec3(value, value, value);
+		}
+};
+
+class SkyMapTexture: public Texture{
+	public:
+		SkyMapTexture() {}
+		virtual Vec3 value(double u __attribute__((unused)), double v, const Vec3& p __attribute__((unused))) const {
+			Vec3 sky = (1.0-v)*Vec3(1, 0.7, 0.6)+v*Vec3(0.6, 0.7, 1);
+			return sky;
+		}
+};
 
 // ================== Materials =======================
 
@@ -234,21 +269,24 @@ class Lambertian: public Material{
 class Metal: public Material{
 	public:
 	
-	Vec3 albedo;
-	double fuzz;
+	Texture* albedo;
+	Texture* fuzz;
 
-	Metal(const Vec3& a, double f){
-		albedo = a;
-		if (f < 0) fuzz = 0;
-		else if (f < 1) fuzz = f;
-		else fuzz = 1;
+	Metal(Vec3 albedo, double fuzz){
+		this->albedo = new ConstantTexture(albedo);
+		this->fuzz = new ConstantTexture(Vec3(fuzz, fuzz, fuzz));
+	}
+
+	Metal(Texture* albedo, Texture* fuzz){
+		this->albedo = albedo;
+		this->fuzz = fuzz;
 	}
 	virtual ~Metal(){}
 
 	virtual bool scatter(const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const {
 		Vec3 reflected = reflect(Vec3::unit_vector(r_in.direction()), rec.normal);
-		scattered = Ray(rec.p, reflected+fuzz*random_in_unit_sphere());
-		attenuation = albedo;
+		scattered = Ray(rec.p, reflected+fuzz->value(rec.u, rec.v, rec.p).clip(0, 1)*random_in_unit_sphere());
+		attenuation = albedo->value(rec.u, rec.v, rec.p);
 		return (Vec3::dot(scattered.direction(), rec.normal) > 0);
 	}
 };
@@ -267,7 +305,6 @@ class Dielectric: public Material{
 
 	virtual bool scatter(const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const{
 		Vec3 outward_normal;
-		Vec3 reflected = reflect(r_in.direction(), rec.normal);
 		double ni_over_nt;
 		attenuation = transparency;
 		Vec3 refracted;
@@ -291,6 +328,7 @@ class Dielectric: public Material{
 			reflect_prob = 1.0;
 		}
 		if (drand48(rand_gen) < reflect_prob){
+			Vec3 reflected = reflect(r_in.direction(), rec.normal);
 			scattered = Ray(rec.p, reflected);
 		}
 		else{
@@ -310,6 +348,39 @@ class DiffuseLight: public Material{
 		}
 		virtual Vec3 emitted(float u, float v, const Vec3& p) const {
 			return emit->value(u, v, p);
+		}
+};
+
+class PortalMat: public Material{
+	public:
+		Vec3 loc_1;
+		Vec3 loc_2;
+		Vec3 albedo;
+		PortalMat(Vec3 loc_1, Vec3 loc_2, Vec3 albedo): loc_1(loc_1), loc_2(loc_2), albedo(albedo) {}
+		virtual ~PortalMat(){}
+		virtual bool scatter(const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const{
+			Vec3 origin;
+			double ref_idx = 2;
+			double dot_d_n = Vec3::dot(r_in.direction(), rec.normal);
+			double cosine;
+			if (dot_d_n > 0){
+				origin = loc_2+(rec.p-loc_1);//rec.p;
+				cosine = ref_idx * dot_d_n/r_in.direction().length();
+			}
+			else{
+				origin = loc_2+(rec.p-loc_1);
+				cosine = -dot_d_n/r_in.direction().length();
+			}
+
+			double reflect_prob = schlick(cosine, ref_idx);
+			if (drand48(rand_gen) < reflect_prob){
+				attenuation = albedo;
+			}
+			else{
+				attenuation = Vec3(1,1,1);
+			}
+			scattered = Ray(origin, r_in.direction());
+			return true;
 		}
 };
 

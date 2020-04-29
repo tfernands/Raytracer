@@ -1,9 +1,9 @@
 #ifndef CAMERAHPP
 #define CAMERAHPP
 
+#include <iostream>
 #include "Ray.hpp"
 #include "utils.hpp"
-
 
 class Camera{
 	private:
@@ -84,6 +84,12 @@ class Camera{
 			Vec3 offset = u*rd.x() + v*rd.y();
 			Vec3 temp_origin = origin+offset;
 			return Ray(temp_origin, top_left_corner+s*horizontal-t*vertical-temp_origin);
+		}
+
+
+		friend std::ostream& operator<<(std::ostream &out, Camera &c){
+			out << "origin: " << c.origin << " | w: " << c.w << " | u: " << c.u << " | v: " << c.v << " | FOV: " << c.fov << " | Focus: " << c.focus_dist;
+			return out;
 		}
 
 };
