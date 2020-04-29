@@ -504,53 +504,26 @@
 	"buffers":
 	[
 		{
-			"file": "src/main.cpp",
+			"file": "/C/lib/installOCV.sh",
 			"settings":
 			{
-				"buffer_size": 7240,
-				"encoding": "UTF-8",
+				"buffer_size": 1108,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "headers/Scene.hpp",
+			"file": "/D/Projetos/IC/vmais/TFLite/C++/facec++/ocvteste.cpp",
 			"settings":
 			{
-				"buffer_size": 5745,
-				"encoding": "UTF-8",
+				"buffer_size": 159,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "headers/Material.hpp",
+			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 10135,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "headers/Sphere.hpp",
-			"settings":
-			{
-				"buffer_size": 1480,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/W/cabin_camera_entrega_abril_2020/denoxcv/face_detector/detector_module.py",
-			"settings":
-			{
-				"buffer_size": 7518,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "headers/EnvironmentSphere.hpp",
-			"settings":
-			{
-				"buffer_size": 900,
+				"buffer_size": 1105,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -644,12 +617,29 @@
 	],
 	"file_history":
 	[
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/CMakeLists.sh",
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/CMakeLists.txt",
+		"/D/Projetos/IC/vmais/TFLite/C++/facec++/ocvteste.cpp",
+		"/C/Users/thale/AppData/Local/Temp/Rar$DIa13204.20083/CMakeLists.txt",
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/include/opencv2/opencv.hpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/samples/cpp/drawing.cpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/samples/cpp/tutorial_code/introduction/display_image/display_image.cpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/samples/cpp/example_cmake/example.cpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/samples/cpp/example_cmake/Makefile",
+		"/D/Projetos/IC/vmais/TFLite/C++/hardware.txt",
+		"/D/Projetos/IC/vmais/TFLite/C++/Face/wider_demo.py",
+		"/D/Projetos/IC/vmais/TFLite/C++/Face/detector_module.py",
+		"/C/lib/installOCV.sh",
+		"/D/Projetos/IC/vmais/TFLite/C++/ocvteste.cpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/Face/config6.json",
+		"/D/Projetos/Raytracer/headers/EnvironmentSphere.hpp",
+		"/D/Projetos/Raytracer/headers/scenes.hpp",
+		"/D/Projetos/Raytracer/src/main.cpp",
+		"/D/Projetos/Raytracer/headers/Material.hpp",
+		"/W/training_instructions/face-lp_detection/train_face_detection.py",
 		"/D/Projetos/Raytracer/headers/Sphere.hpp",
 		"/D/Projetos/Raytracer/test/testec.cpp",
 		"/D/Projetos/Raytracer/headers/Hitable.hpp",
-		"/D/Projetos/Raytracer/headers/Material.hpp",
-		"/D/Projetos/Raytracer/headers/scenes.hpp",
-		"/D/Projetos/Raytracer/src/main.cpp",
 		"/C/Users/thale/Downloads/yawnnet.cc",
 		"/D/Projetos/Raytracer/headers/Vec3.hpp",
 		"/D/Projetos/IC/vmais/TFLite/C++/tensorflow-master/tensorflow/lite/examples/yawnnet/bitmap_helpers_impl.h",
@@ -668,7 +658,6 @@
 		"/C/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.24.28314/include/crtdefs.h",
 		"/D/Projetos/gpu_teste/vec add/add_cpu.cpp",
 		"/D/Projetos/gpu_teste/vec add/add_gpu.cu",
-		"/D/Projetos/IC/vmais/TFLite/C++/hardware.txt",
 		"/D/Projetos/Raytracer/headers/ProgressBar.hpp",
 		"/D/Projetos/Raytracer/headers/AABB.hpp",
 		"/D/Projetos/Raytracer/headers/Ray.hpp",
@@ -755,23 +744,7 @@
 		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/teste_samples/redim.py",
 		"/C/Users/thale/Downloads/RetinaExemplo/DeteccaoTorres_RetinaNet_TESTE.py",
 		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/como_usar.py",
-		"/D/Projetos/ChicaBot/log/log.txt",
-		"/C/Users/thale/Documents/UFMG/ALC/EP1 Python e Numpy.ipynb",
-		"/D/Games/Skyrim/Data/Interface/Translate_ENGLISH.txt",
-		"/W/Datasets/Maxtrack/Videos - 2020-03-18/dataset/users.json",
-		"/C/Users/thale/.jupyter/jupyter_notebook_config.json",
-		"/D/Projetos/ChicaBot/log.txt",
-		"/D/Projetos/ChicaBot/src/ZapBot/__init__.py",
-		"/D/Projetos/ChicaBot/src/WhatsappBot.py",
-		"/D/Projetos/ChicaBot/src/parse_input.py",
-		"/D/Projetos/ChicaBot/src/log.txt",
-		"/D/Projetos/ChicaBot/teste/log.txt",
-		"/C/Users/thale/Desktop/images.py",
-		"/D/Projetos/WebTarefasCarranca/enviar_tarefas.py",
-		"/C/Users/thale/Desktop/Expr.cpp",
-		"/D/Projetos/WebTarefasCarranca/log.txt",
-		"/C/Users/thale/Desktop/Expr.py",
-		"/C/Users/thale/Desktop/trixel/logavarage.py"
+		"/D/Projetos/ChicaBot/log/log.txt"
 	],
 	"find":
 	{
@@ -948,132 +921,16 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/main.cpp",
+					"file": "/C/lib/installOCV.sh",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7240,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								878,
-								878
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 324.8,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "headers/Scene.hpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5745,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2775,
-								2791
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 579.2,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "headers/Material.hpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10135,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1477,
-								1500
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4219.2,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "headers/Sphere.hpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1480,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								392,
-								392
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1081.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/W/cabin_camera_entrega_abril_2020/denoxcv/face_detector/detector_module.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7518,
+						"buffer_size": 1108,
 						"regions":
 						{
 						},
@@ -1086,32 +943,30 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3331.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "headers/EnvironmentSphere.hpp",
+					"buffer": 1,
+					"file": "/D/Projetos/IC/vmais/TFLite/C++/facec++/ocvteste.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 900,
+						"buffer_size": 159,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								407,
-								415
+								0,
+								159
 							]
 						],
 						"settings":
@@ -1122,7 +977,35 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1105,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								744,
+								744
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 182.4,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1220,7 +1103,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 282.0,
 	"status_bar_visible": true,
 	"template_settings":

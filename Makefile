@@ -33,7 +33,7 @@ CC_FLAGS=-c         \
 all: buildFolder $(PROJ_NAME)
  
 $(PROJ_NAME): $(OBJ)
-	$(CC) -o $@ $^ -I$(SFML_PATH)/include -Bstatic -L$(SFML_PATH)/lib -lsfml-graphics -lsfml-window -lsfml-system
+	$(CC) -o $@ $^ -static-libgcc -static-libstdc++ -I$(SFML_PATH)/include -Bstatic -L$(SFML_PATH)/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 $(BUILD_PATH)/%.o: $(CPP_PATH)/%.cpp $(HPP_PATH)/%.hpp
 	$(CC) $(CC_FLAGS) -o $@ $<
