@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"io",
+				"iostream\tstandard header"
+			],
+			[
+				"res",
+				"resting_center_y"
+			],
+			[
+				"vect",
+				"vector\tstandard header"
+			],
+			[
 				"inc",
 				"include"
 			],
@@ -320,10 +332,6 @@
 				"pixel_id"
 			],
 			[
-				"res",
-				"restPos"
-			],
-			[
 				"leg",
 				"leg_number"
 			],
@@ -504,26 +512,24 @@
 	"buffers":
 	[
 		{
-			"file": "/C/lib/installOCV.sh",
+			"contents": "#ifndef UTILHPP\n#define UTILHPP\n\n#include \"xtensor/xarray.hpp\"\n#include \"xtensor/xio.hpp\"\n#include \"xtensor/xview.hpp\"\n#include <float.h>\n\nxt::xarray<float> iou(xt::xarray<float> a, xt::xarray<float> b){\n \txt::xarray<float> x0 = xt::maximum(xt::expand_dims(xt::view(a, xt::all(), 0), 1), xt::view(b, xt::all(), 0));\n\txt::xarray<float> y0 = xt::maximum(xt::expand_dims(xt::view(a, xt::all(), 1), 1), xt::view(b, xt::all(), 1));\n\txt::xarray<float> x1 = xt::minimum(xt::expand_dims(xt::view(a, xt::all(), 2), 1), xt::view(b, xt::all(), 2));\n\txt::xarray<float> y1 = xt::minimum(xt::expand_dims(xt::view(a, xt::all(), 3), 1), xt::view(b, xt::all(), 3));\n\txt::xarray<float> iw = xt::clip(x1-x0, 0, FLT_MAX);\n\txt::xarray<float> ih = xt::clip(y1-y0, 0, FLT_MAX);\n\txt::xarray<float> ab_area = iw*ih;\n\txt::xarray<float> b_area = (xt::view(b, xt::all(), 2)-xt::view(b, xt::all(), 0))*(xt::view(b, xt::all(), 3)-xt::view(b, xt::all(), 1));\n\txt::xarray<float> a_area = (xt::view(a, xt::all(), 2)-xt::view(a, xt::all(), 0))*(xt::view(a, xt::all(), 3)-xt::view(a, xt::all(), 1));\n\treturn ab_area/(xt::expand_dims(a_area, 1)+b_area-ab_area);\n}\n\n#endif",
+			"file": "/D/Projetos/IC/vmais/TFLite/C++/FaceC++/util.hpp",
+			"file_size": 1156,
+			"file_write_time": 132326788679965562,
 			"settings":
 			{
-				"buffer_size": 1108,
+				"buffer_size": 1135,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/D/Projetos/IC/vmais/TFLite/C++/facec++/ocvteste.cpp",
+			"contents": "#include <iostream>\n#include \"util.hpp\"\n#include \"anchors.hpp\"\n\nint main(){\n\txt::xarray<float> t0 = {1, 0.5};\n\txt::xarray<float> t1 = {1, 0.5};\n\t\n\tAnchors a(32, t0, xt::xarray<float>{1, 0.5}, (2, 2))\n\txt::xarray<float> a = {{1,4,6,7},{0.8,0.4,2,3}};\n\txt::xarray<float> b = {{1,5,2,6},{3,2,4,3}};\n\tstd::cout<<iou(a, b)<<std::endl;\n\treturn 0;\n}",
+			"file": "/D/Projetos/IC/vmais/TFLite/C++/FaceC++/src/main.cpp",
+			"file_size": 305,
+			"file_write_time": 132326804422141417,
 			"settings":
 			{
-				"buffer_size": 159,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Makefile",
-			"settings":
-			{
-				"buffer_size": 1105,
+				"buffer_size": 342,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -617,9 +623,23 @@
 	],
 	"file_history":
 	[
+		"/D/Projetos/IC/vmais/TFLite/C++/FaceC++/Makefile",
+		"/D/Projetos/IC/vmais/TFLite/C++/FaceC++/headers/anchors.hpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/FaceC++/anchors.hpp",
+		"/D/Projetos/Raytracer/Makefile",
+		"/D/Projetos/IC/vmais/TFLite/C++/install_xtensor.txt",
+		"/D/Projetos/IC/vmais/TFLite/C++/libs/teste/xtensor.cpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/libs/xtl/build/install_manifest.txt",
+		"/D/Projetos/IC/vmais/TFLite/C++/FaceC++/util.hpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/build/Makefile",
+		"/D/Projetos/IC/vmais/TFLite/C++/FaceC++/tracking.hpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/Face/wider_demo.py",
+		"/D/Projetos/IC/vmais/TFLite/C++/facec++/ocvteste.cpp",
+		"/D/Projetos/IC/vmais/TFLite/C++/opencv/build2/Makefile",
+		"/C/lib/installOCV.sh",
+		"/D/Download/hardware.txt",
 		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/CMakeLists.sh",
 		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/CMakeLists.txt",
-		"/D/Projetos/IC/vmais/TFLite/C++/facec++/ocvteste.cpp",
 		"/C/Users/thale/AppData/Local/Temp/Rar$DIa13204.20083/CMakeLists.txt",
 		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/include/opencv2/opencv.hpp",
 		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/samples/cpp/drawing.cpp",
@@ -627,9 +647,7 @@
 		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/samples/cpp/example_cmake/example.cpp",
 		"/D/Projetos/IC/vmais/TFLite/C++/opencv/sources/samples/cpp/example_cmake/Makefile",
 		"/D/Projetos/IC/vmais/TFLite/C++/hardware.txt",
-		"/D/Projetos/IC/vmais/TFLite/C++/Face/wider_demo.py",
 		"/D/Projetos/IC/vmais/TFLite/C++/Face/detector_module.py",
-		"/C/lib/installOCV.sh",
 		"/D/Projetos/IC/vmais/TFLite/C++/ocvteste.cpp",
 		"/D/Projetos/IC/vmais/TFLite/C++/Face/config6.json",
 		"/D/Projetos/Raytracer/headers/EnvironmentSphere.hpp",
@@ -690,7 +708,6 @@
 		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/minimal/minimal.cc",
 		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/get_top_n_impl.h",
 		"/D/Projetos/IC/BusStop/TFLite/C++/tensorflow-master/tensorflow/lite/examples/label_image/get_top_n.h",
-		"/D/Projetos/Raytracer/Makefile",
 		"/D/Projetos/IC/BusStop/TFLite/C++/testes/include_byteswap.cpp",
 		"/C/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/byteswap.h",
 		"/D/Projetos/IC/BusStop/TFLite/C++/downloads/byteswap.h",
@@ -733,18 +750,7 @@
 		"/Y/trixel_yolov3/keras-yolo3/yolo.py",
 		"/Y/trixel_yolov3/util.py",
 		"/Y/trixel_yolov3/yolo_code_torre.py",
-		"/Y/.conda/environments.txt",
-		"/Y/trixel_yolov3/pyutil/visualizer.py",
-		"/Y/trixel_yolov3/image_crops.py",
-		"/Y/trixel_yolov3/trixel_dataset.py",
-		"/Y/trixel_yolov3/yolo_util.py",
-		"/C/Users/thale/Downloads/RetinaExemplo/Detecção_das_Torres_usando_RetinaNet.ipynb",
-		"/Y/trixel_yolov3/train_torre (2).sh",
-		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/lenet_mouth.py",
-		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/teste_samples/redim.py",
-		"/C/Users/thale/Downloads/RetinaExemplo/DeteccaoTorres_RetinaNet_TESTE.py",
-		"/D/Projetos/IC/BusStop/TFLite/Teste yawnnet/como_usar.py",
-		"/D/Projetos/ChicaBot/log/log.txt"
+		"/Y/.conda/environments.txt"
 	],
 	"find":
 	{
@@ -759,9 +765,17 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"windres",
+			"windres.exe",
+			"windres",
+			"w",
+			"wi",
+			"windr",
+			"wind",
+			"tracking",
 			"fix_ar",
 			"Metal",
 			"float",
@@ -909,7 +923,7 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"folders":
@@ -921,52 +935,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/lib/installOCV.sh",
+					"file": "/D/Projetos/IC/vmais/TFLite/C++/FaceC++/util.hpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1108,
+						"buffer_size": 1135,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/D/Projetos/IC/vmais/TFLite/C++/facec++/ocvteste.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 159,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								159
+								32,
+								32
 							]
 						],
 						"settings":
@@ -981,28 +967,28 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "Makefile",
+					"buffer": 1,
+					"file": "/D/Projetos/IC/vmais/TFLite/C++/FaceC++/src/main.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1105,
+						"buffer_size": 342,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								744,
-								744
+								145,
+								145
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
+							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 182.4,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1103,7 +1089,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 282.0,
 	"status_bar_visible": true,
 	"template_settings":

@@ -19,7 +19,7 @@
 
 using namespace std;
 
-int max_depth = 20;
+int max_depth = 5;
 
 atomic_bool kill_render;
 int *indexes;
@@ -55,7 +55,6 @@ void render(Vec3* buffer, Hitable* world, const Camera &cam, const Render_config
 			if (kill_render) return;
 		}
 	}
-	return;
 }
 
 int main(int argc, char **argv){
@@ -83,15 +82,16 @@ int main(int argc, char **argv){
 		random_shuffle(&indexes[0], &indexes[buffer_length]);
 	}
 	
-	//start threads
-	thread* threads[config.threads];
-	for (int i = 0; i < config.threads; i++){
-		int start = (buffer_length/config.threads)*i;
-		int end = (buffer_length/config.threads)*(i+1);
+	// start threads
+	int nthreads = config.threads;
+	thread* threads[nthreads];
+	for (int i = 0; i < nthreads; i++){
+		int start = (buffer_length/nthreads)*i;
+		int end = (buffer_length/nthreads)*(i+1);
 		threads[i] = new thread(render, buffer, world, ref(cam), ref(config), start, end);
 	}
 
-	//================ Display and save image ====================
+	// ================ Display and save image ====================
 	sf::RenderWindow window(sf::VideoMode(config.width, config.height, 32), config.file_name);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
@@ -104,7 +104,7 @@ int main(int argc, char **argv){
 	bool keys[keys_count];
 	for (int i = 0; i < keys_count; i++) keys[i] = false;
 	while(window.isOpen()){
-		//update window
+		// update window
 		sf::Time elapsed = clock.restart();
 		sf::Event event;
 		while (window.pollEvent(event)){
@@ -211,7 +211,7 @@ int main(int argc, char **argv){
 			}
 
 			//Wait some of the image to be rendered
-			std::cout<<"Wait some of the image to be rendered"<<std::endl;
+			std::cout<<"Wait for the first pass be rendered"<<std::endl;
 			int sum = 0;
 			while(sum < buffer_length){
 				sum = 0;
