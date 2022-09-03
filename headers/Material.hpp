@@ -1,13 +1,12 @@
-#ifndef MATERIALHPP
-#define MATERIALHPP
+#ifndef MATERIAL_HPP
+#define MATERIAL_HPP
 
 #include <math.h>
-#include "Ray.hpp"
-#include "Hitable.hpp"
-#include "utils.hpp"
 #include <stdint.h>
+#include "utils.hpp"
+#include "HitRecord.hpp"
 
-struct HitRecord;
+//class Ray;
 
 // ============= UTIL ==================
 
@@ -118,7 +117,7 @@ class Perlin {
 
 	static void permute(int* p, int n){
 		for (int i = n-1; i > 0; i--){
-			int target = int(random()*(i+1));
+			int target = int(drand48()*(i+1));
 			int tmp = p[i];
 			p[i] = p[target];
 			p[target] = tmp;
@@ -236,7 +235,7 @@ class SkyMapTexture: public Texture{
 
 // ================== Materials =======================
 
-class Material{
+class Material {
 	public:
 	virtual ~Material(){}
 	virtual bool scatter(const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const = 0;
@@ -245,12 +244,12 @@ class Material{
 	}
 };
 
-class Lambertian: public Material{
+class Lambertian: public Material {
 	public:
 	Texture* albedo;
 
 	Lambertian(){
-		albedo = new ConstantTexture(Vec3(random()*0.9, random()*0.9, random()*0.9));
+		albedo = new ConstantTexture(Vec3(drand48()*0.9, drand48()*0.9, drand48()*0.9));
 	}
 	Lambertian(Vec3 albedo){
 		this->albedo = new ConstantTexture(albedo);
@@ -258,7 +257,7 @@ class Lambertian: public Material{
 	Lambertian(Texture* albedo): albedo(albedo){}
 	virtual ~Lambertian(){}
 
-	virtual bool scatter(const Ray& r_in __attribute__((unused)), const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const {
+	virtual bool scatter(const Ray &r_in __attribute__((unused)), const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const {
 		Vec3 target = rec.p + rec.normal + random_in_unit_sphere();
 		scattered = Ray(rec.p, target-rec.p);
 		attenuation = albedo->value(rec.u, rec.v, rec.p);
@@ -298,7 +297,7 @@ class Dielectric: public Material{
 
 	double ref_idx;
 	Dielectric(double ri){
-		transparency = Vec3(1-random()*0.2,1-random()*0.2,1-random()*0.2);
+		transparency = Vec3(1-drand48()*0.2,1-drand48()*0.2,1-drand48()*0.2);
 		ref_idx = ri;
 	}
 	virtual ~Dielectric(){}
@@ -327,7 +326,7 @@ class Dielectric: public Material{
 		else{
 			reflect_prob = 1.0;
 		}
-		if (drand48(rand_gen) < reflect_prob){
+		if (drand48() < reflect_prob){
 			Vec3 reflected = reflect(r_in.direction(), rec.normal);
 			scattered = Ray(rec.p, reflected);
 		}
@@ -359,27 +358,9 @@ class PortalMat: public Material{
 		PortalMat(Vec3 loc_1, Vec3 loc_2, Vec3 albedo): loc_1(loc_1), loc_2(loc_2), albedo(albedo) {}
 		virtual ~PortalMat(){}
 		virtual bool scatter(const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const{
-			Vec3 origin;
-			double ref_idx = 2;
-			double dot_d_n = Vec3::dot(r_in.direction(), rec.normal);
-			double cosine;
-			if (dot_d_n > 0){
-				origin = loc_2+(rec.p-loc_1);//rec.p;
-				cosine = ref_idx * dot_d_n/r_in.direction().length();
-			}
-			else{
-				origin = loc_2+(rec.p-loc_1);
-				cosine = -dot_d_n/r_in.direction().length();
-			}
-
-			double reflect_prob = schlick(cosine, ref_idx);
-			if (drand48(rand_gen) < reflect_prob){
-				attenuation = albedo;
-			}
-			else{
-				attenuation = Vec3(1,1,1);
-			}
-			scattered = Ray(origin, r_in.direction());
+			Vec3 origin = loc_2+(rec.p-loc_1);
+			attenuation = albedo;
+			scattered = Ray(origin, Vec3(1,0,0));
 			return true;
 		}
 };

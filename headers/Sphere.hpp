@@ -4,7 +4,7 @@
 #include "Hitable.hpp"
 #include "Material.hpp"
 
-class Sphere: public Hitable{
+class Sphere: public Hitable {
 	private:
 		static constexpr double bbox_pad = 0.0001;
 		static void get_uv(const Vec3& p, double& u , double& v){

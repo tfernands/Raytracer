@@ -2,7 +2,6 @@
 #define PLANEHPP
 
 #include "Hitable.hpp"
-#include "Material.hpp"
 
 class InfinitPlane: public Hitable{
 	private:

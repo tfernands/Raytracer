@@ -1,9 +1,8 @@
 #ifndef AABBHPP
 #define AABBHPP
 
-#include "Vec3.hpp"
-#include "Ray.hpp"
-
+class Vec3;
+class Ray;
 
 inline double ffmin(double a, double b) { return a < b ? a : b;}
 inline double ffmax(double a, double b) { return a > b ? a : b;}

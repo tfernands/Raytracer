@@ -5,7 +5,6 @@ PROJ_NAME=main
 CPP_PATH=./src
 HPP_PATH=./headers
 BUILD_PATH=./build
-SFML_PATH=./lib/SFML-2.5.1
 
 # .cpp files
 CPP_SOURCE=$(wildcard $(CPP_PATH)/*.cpp)
@@ -17,15 +16,14 @@ HPP_SOURCE=$(wildcard $(HPP_PATH)/*.hpp)
 OBJ=$(subst .cpp,.o,$(subst $(CPP_PATH),$(BUILD_PATH),$(CPP_SOURCE)))
  
 # Compiler
-CC=g++
+CC=g++ -std=c++17
  
 # Flags for compiler
 CC_FLAGS=-c         \
+		 -I$(HPP_PATH)\
          -W         \
          -Wall      \
-         -Ofast		\
-         -I$(HPP_PATH)\
-         -I$(SFML_PATH)/include/
+ 		 -Ofast		\
 
 #
 # Compilation and linking
@@ -33,7 +31,7 @@ CC_FLAGS=-c         \
 all: buildFolder $(PROJ_NAME)
  
 $(PROJ_NAME): $(OBJ)
-	$(CC) -o $@ $^ -static-libgcc -static-libstdc++ -I$(SFML_PATH)/include -Bstatic -L$(SFML_PATH)/lib -lsfml-graphics -lsfml-window -lsfml-system
+	$(CC) -o $@ $^ -lsfml-graphics -lsfml-window -lsfml-system -lpthread
 
 $(BUILD_PATH)/%.o: $(CPP_PATH)/%.cpp $(HPP_PATH)/%.hpp
 	$(CC) $(CC_FLAGS) -o $@ $<

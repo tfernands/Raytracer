@@ -8,15 +8,11 @@
 using namespace std;
 
 std::default_random_engine rand_gen;
-std::uniform_real_distribution<double> drand48(0.0, 1.0);
 
 void set_seed(int seed){
 	rand_gen.seed(seed);
 }
 
-inline double random(){
-	return drand48(rand_gen);
-}
 
 double max(double a, double b){
 	if (a > b) return a;
@@ -31,7 +27,7 @@ double min(double a, double b){
 Vec3 random_in_unit_sphere(){
 	Vec3 p;
 	do {
-		p = 2.0*Vec3(random(),random(),random()) - Vec3(1,1,1);
+		p = 2.0*Vec3(drand48(),drand48(),drand48()) - Vec3(1,1,1);
 	} while (p.squared_length() >= 1.0);
 	return p;
 }
@@ -39,7 +35,7 @@ Vec3 random_in_unit_sphere(){
 Vec3 random_in_unit_disk(){
 	Vec3 p;
 	do{
-		p = 2*Vec3(random(),random(),0) - Vec3(1,1,0);
+		p = 2*Vec3(drand48(),drand48(),0) - Vec3(1,1,0);
 	}while(Vec3::dot(p,p) >= 1.0);
 	return p;
 }

@@ -1,11 +1,14 @@
-#include "EnvironmentSphere.hpp"
+#ifndef SCENEHPP
+#define SCENEHPP
+
+// #include "EnvironmentSphere.hpp"
 #include "Sphere.hpp"
 #include "Plane.hpp"
 #include "HitableList.hpp"
 #include "Material.hpp"
-#include "bmphelper.hpp"
+// #include "bmphelper.hpp"
 
-ImageTexture* bmp2Texture(const std::string& path);
+// ImageTexture* bmp2Texture(const std::string& path);
 
 // =============== CAMERAS =================
 Camera cornell_box_camera(double nx, double ny){
@@ -32,7 +35,6 @@ Hitable* ground_and_sphere(){
 	Texture* constColor = new ConstantTexture(Vec3(0.7,0.7,0.7));
 	int i = 0;
 	Hitable** list = new Hitable*[3];
-	list[i++] = new EnvironmentSphere(new SkyMapTexture());
 	list[i++] = new Sphere(Vec3(0,-1000,0), 1000, new Lambertian(constColor));
 	list[i++] = new Sphere(Vec3(-4,1,0),1, new Lambertian(constColor));
 	return new HitableList(list, i);
@@ -42,29 +44,49 @@ Hitable* two_sphere(){
 	Texture* checkerTexture = new CheckerTexture(new ConstantTexture(Vec3(0.2,.3,.1)), new ConstantTexture(Vec3(0.9,.9,.9)), 10);
 	int i = 0;
 	Hitable** list = new Hitable*[3];
-	list[i++] = new EnvironmentSphere(new SkyMapTexture());
 	list[i++] = new Sphere(Vec3(0,-10,0),10, new Lambertian(checkerTexture));
 	list[i++] = new Sphere(Vec3(0,10,0),10, new Lambertian(checkerTexture));
 	return new HitableList(list, i);
 }
 
-Hitable* sphere_image_texture(){
-	int i = 0;
-	Texture* earthTexture = bmp2Texture("./data/planet.bmp");
-	Hitable** list = new Hitable*[3];
-	list[i++] = new EnvironmentSphere(new SkyMapTexture());
-	list[i++] = new Sphere(Vec3(0,0,0),2, new Lambertian(earthTexture));
-	list[i++] = new Sphere(Vec3(6,0,0),2, new Metal(new ConstantTexture(Vec3(0.6,0.6,0.6)), new InvertTexture(bmp2Texture("./data/europa.bmp"))));
-	return new HitableList(list, i);
-}
+// Hitable* sphere_image_texture(){
+// 	int i = 0;
+// 	Texture* earthTexture = bmp2Texture("./data/planet.bmp");
+// 	Hitable** list = new Hitable*[3];
+// 	list[i++] = new Sphere(Vec3(0,0,0),2, new Lambertian(earthTexture));
+// 	list[i++] = new Sphere(Vec3(6,0,0),2, new Metal(new ConstantTexture(Vec3(0.6,0.6,0.6)), new InvertTexture(bmp2Texture("./data/europa.bmp"))));
+// 	return new HitableList(list, i);
+// }
 
 Hitable* area_light_scene(){
 	int i = 0;
-	Hitable** list = new Hitable*[5];
-	list[i++] = new Sphere(Vec3(0,-1000,0),1000, new Lambertian(new Marble(4)));
-	list[i++] = new Sphere(Vec3(0,2,0),2, new Lambertian(new Marble(5)));
-	list[i++] = new Sphere(Vec3(0,7,0), 2, new DiffuseLight(new ConstantTexture(Vec3(4,4,4))));
-	list[i++] = new XYRect(3, 5, 1, 3, -2, new DiffuseLight(new ConstantTexture(Vec3(4,4,4))));
+	Hitable** list = new Hitable*[5+10];
+	list[i++] = new Sphere(Vec3(0,-1000,0),1000, new Lambertian(Vec3(1,1,1)));
+
+	list[i++] = new Sphere(Vec3(0,2,0), 2, new Lambertian(new Marble(5)));
+
+	for (int j = 0; j < 5; j++){
+		float r = drand48()+.5;
+		list[i++] = new Sphere(Vec3(drand48()*20-10,r,drand48()*20-10), r,
+			new Metal(
+				Vec3(.8),
+				1
+			)
+		);
+	}
+
+	for (int j = 0; j < 5; j++){
+		float r = drand48()+.5;
+		list[i++] = new Sphere(Vec3(drand48()*20-10,r,drand48()*20-10), r,
+			new Dielectric(
+				1.5
+			)
+		);
+	}
+	
+
+	list[i++] = new Sphere(Vec3(7,8,10), 3, new DiffuseLight(new ConstantTexture(Vec3(8,4,4))));
+	list[i++] = new XYRect(3, 5, 1, 3, -2, new DiffuseLight(new ConstantTexture(Vec3(4,4,7))));
 	return new BVHNode(list, i);
 }
 
@@ -93,8 +115,8 @@ Hitable* random_scene(int n){
 	list_spheres[i++] = new Sphere(Vec3(4,1,0),1,new Lambertian(Vec3(0.9,0.9,0.9)));
 	list_spheres[i++] =  new Sphere(Vec3(-4,1,0),1,new Metal(new ConstantTexture(Vec3(0.6,0.6,0.6)), new ConstantTexture(Vec3(0,0,0))));
 	while(true){
-		double choose_mat = random();
-		Vec3 center(50*(random()-0.5), random()*0.3+0.07, 50*(random()-0.5));
+		double choose_mat = drand48();
+		Vec3 center(50*(drand48()-0.5), drand48()*0.3+0.07, 50*(drand48()-0.5));
 		if ((center-Vec3(4,0.2,0)).length() > 0.9){
 			if (choose_mat < 0.4){
 				list_spheres[i++] = new Sphere(center, center.y(), new Lambertian());
@@ -102,7 +124,7 @@ Hitable* random_scene(int n){
 			else if (choose_mat < 0.75){
 				list_spheres[i++] = new Sphere(
 					center, center.y(),
-					new Metal(Vec3(0.5*(1+random()), 0.5*(1+random()), 0.5*(1+random())), 0.3*random())
+					new Metal(Vec3(0.5*(1+drand48()), 0.5*(1+drand48()), 0.5*(1+drand48())), 0.3*drand48())
 				);
 			}
 			else{
@@ -113,19 +135,20 @@ Hitable* random_scene(int n){
 		}
 	}
 	Hitable** final_list = new Hitable*[3];
-	final_list[0] = new EnvironmentSphere(new SkyMapTexture());
 	final_list[1] = ground_plane;
 	final_list[2] = new BVHNode(list_spheres, i, 0);
 	return new HitableList(final_list, 3);
 }
 
 
-// util
-ImageTexture* bmp2Texture(const std::string& path){
-	int width, height, channels;
-	std::vector<uint8_t> img = bmphelper::read_bmp(path, &width, &height, &channels, false);
-	uint8_t* data = new uint8_t[width*height*3];
-	for (int i = 0; i < width*height*3; i++)
-		data[i] = img[i];
-	return new ImageTexture(data, width, height);
-}
+// // util
+// ImageTexture* bmp2Texture(const std::string& path){
+// 	int width, height, channels;
+// 	std::vector<uint8_t> img = bmphelper::read_bmp(path, &width, &height, &channels, false);
+// 	uint8_t* data = new uint8_t[width*height*3];
+// 	for (int i = 0; i < width*height*3; i++)
+// 		data[i] = img[i];
+// 	return new ImageTexture(data, width, height);
+// }
+
+#endif

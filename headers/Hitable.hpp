@@ -1,18 +1,8 @@
 #ifndef HITABLEHPP
 #define HITABLEHPP
 
-#include "Ray.hpp"
 #include "AABB.hpp"
-
-class Material;
-
-struct HitRecord{
-	double t;				//distance traveled to hit point
-	double u, v;			//object hitcoord
-	Vec3 p;					//hit point
-	Vec3 normal;			//surface normal  
-	Material *material; 	//material
-};
+#include "HitRecord.hpp"
 
 class Hitable{
 	public:

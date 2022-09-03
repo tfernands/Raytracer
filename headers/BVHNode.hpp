@@ -39,7 +39,7 @@ public:
 	BVHNode(){}
 
 	BVHNode(Hitable **l, int n){
-		int axis = int(3*random());
+		int axis = int(3*drand48());
 		if (axis == 0){
 			qsort(l, n, sizeof(Hitable*), box_x_compare);
 		}

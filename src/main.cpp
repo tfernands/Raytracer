@@ -5,9 +5,10 @@
 #include <atomic>
 #include <string>
 #include <algorithm>
-#include <SFML\Graphics.hpp>
-#include <SFML\Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include "Camera.hpp"
+#include "Material.hpp"
 #include "Sphere.hpp"
 #include "Plane.hpp"
 #include "HitableList.hpp"
@@ -17,18 +18,33 @@
 #include "utils.hpp"
 #include "ProgressBar.hpp"
 
+
 using namespace std;
 
-int max_depth = 5;
+int max_depth = 20;
+
+float fog_max_dist = 10;
 
 atomic_bool kill_render;
 int *indexes;
 int *spps;
 
+Vec3 background(const Ray& r){
+	Vec3 unit_direction = Vec3::unit_vector(r.direction());
+	float t = 0.5*(unit_direction.y() + 1.0);
+	return (1.0-t)*Vec3(1, 1, 1) + t*Vec3(0.5, 0.7, 1);
+}
+
 Vec3 shoot(const Ray& r, Hitable *world, int depth){
 	HitRecord rec;
 	if (world->hit(r, 0.001, DBL_MAX, rec)){
 		Ray scattered;
+
+		if (depth < max_depth && drand48() < rec.t/fog_max_dist){
+			scattered = Ray(r.origin()+r.direction()*drand48()*min(max_depth,rec.t), random_in_unit_sphere());
+			return shoot(scattered, world, depth+1);
+		}
+
 		Vec3 attenuation;
 		Vec3 emitted = rec.material->emitted(rec.u, rec.v, rec.p);
 		if (depth < max_depth && rec.material->scatter(r, rec, attenuation, scattered)){
@@ -37,8 +53,12 @@ Vec3 shoot(const Ray& r, Hitable *world, int depth){
 		else{
 			return emitted;
 		}
-	}else{
-		return Vec3(0, 0, 0);
+	}else{	
+		if (depth < max_depth){	
+			Ray scattered = Ray(r.origin()+r.direction()*drand48()*max_depth, random_in_unit_sphere());
+			return shoot(scattered, world, depth+1);
+		}
+		return background(r)*Vec3(.08, .1, .13)*.1;
 	}
 }
 
@@ -48,8 +68,8 @@ void render(Vec3* buffer, Hitable* world, const Camera &cam, const Render_config
 			spps[indexes[idx]]++;
 			int i = indexes[idx] / config.width;
 			int j = indexes[idx] % config.width;
-			double u = double(j+random())/double(config.width);
-			double v = double(i+random())/double(config.height);
+			double u = double(j+drand48())/double(config.width);
+			double v = double(i+drand48())/double(config.height);
 			Ray r = cam.get_ray(u, v);
 			buffer[indexes[idx]] += shoot(r, world, 0);
 			if (kill_render) return;
@@ -57,17 +77,23 @@ void render(Vec3* buffer, Hitable* world, const Camera &cam, const Render_config
 	}
 }
 
+#include "Vec3.hpp"
+
 int main(int argc, char **argv){
+
+	cout << "MAIN LOOP" << endl;
 	
 	kill_render = false;
 	Render_config config;
-	config.width = 400;
-	config.height = 225;
+	config.threads = 16;
+	config.width = 800;
+	config.height = 500;
 	config.threads = thread::hardware_concurrency();
 	if (input_handler(config, argc, argv) > 0) return 1;
 
 	// Initialize scene
-	Hitable* world = random_scene(1000);//sphere_image_texture();//area_light_scene();//cornell_box();
+	Hitable* world = area_light_scene();
+	
 	Camera cam = custom_cam(config.width, config.height);
 
 	const int buffer_length = config.width*config.height;
@@ -92,6 +118,9 @@ int main(int argc, char **argv){
 	}
 
 	// ================ Display and save image ====================
+	
+	std::cout << "Openning Display" << std::endl;
+
 	sf::RenderWindow window(sf::VideoMode(config.width, config.height, 32), config.file_name);
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
@@ -213,7 +242,7 @@ int main(int argc, char **argv){
 			//Wait some of the image to be rendered
 			std::cout<<"Wait for the first pass be rendered"<<std::endl;
 			int sum = 0;
-			while(sum < buffer_length){
+			while(sum < buffer_length*.1){
 				sum = 0;
 				for (int i = 0; i < buffer_length; i++){
 					if (spps[i] >= 1) {

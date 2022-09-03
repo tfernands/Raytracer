@@ -2,6 +2,7 @@
 #define CAMERAHPP
 
 #include <iostream>
+#include "Vec3.hpp"
 #include "Ray.hpp"
 #include "utils.hpp"
 
